@@ -5,21 +5,20 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import frc.robot.subsystems.Sucker;
 import frc.robot.subsystems.Drivebase;
+import frc.robot.subsystems.Sucker;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class Auto extends ParallelCommandGroup {
-  /** Creates a new Auto. */
-  public Auto(Sucker suck1, Drivebase drive ) {
+public class Autotask extends ParallelCommandGroup {
+  /** Creates a new Autotask. */
+  public Autotask(Drivebase drive, Sucker suck) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new Sucking(suck1),
-      new DriveStraight(drive, 0.8),
-      new RotateAngle(drive, 50.0)
+      //new DriveStraight(drive, 0.5),
+      new Sucking (suck)
     );
   }
 }

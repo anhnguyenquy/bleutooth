@@ -7,11 +7,12 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+//import frc.robot.commands.ExampleCommand;
+//import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+//import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.commands.Auto;
-import frc.robot.commands.DriveStraight;
+import frc.robot.commands.Autotask;
 import frc.robot.subsystems.Drivebase;
 import frc.robot.subsystems.Sucker;
 
@@ -26,12 +27,13 @@ import frc.robot.subsystems.Sucker;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+  //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   public static final Joystick stic = new Joystick(1);
 
-  public static Drivebase drive = new Drivebase(4);
+  //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  public static Drivebase drive = new Drivebase();
   public static Sucker suc = new Sucker();
-  Command auto = new Auto(suc, drive);
-  Command drivestraight = new DriveStraight(drive, 0.3);
+  Command auto = new Autotask(drive, suc);
   
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -50,7 +52,7 @@ public class RobotContainer {
    * @param trigger
    */
   private void configureButtonBindings(Trigger trigger) {
-    new JoystickButton(stic, 1).whenActive( drivestraight);
+    //new JoystickButton(stic, 1).whenActive( straight);
   }
 
   /**
@@ -60,6 +62,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return drivestraight;
+    return auto;
   }
 }

@@ -42,13 +42,12 @@ public class RotateAngle extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() { // công thức tính speed
+  public void execute() {
     SmartDashboard.putBoolean("start", true ); // Put a boolean on the table
     SmartDashboard.putNumber("angle", m_gyro.getYaw());
     double speed = turnController.turncontroller.calculate(m_gyro.getYaw());
-    speed += Math.signum(speed)*0.1;    // High bound
-    speed = Math.min(-0.6, Math.max(0.6, speed));   // Lower bound
-    drivebase.drive(speed, speed);
+    speed += Math.signum(speed)*0.1;
+    
   }
   
 
@@ -59,7 +58,6 @@ public class RotateAngle extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return turnController.atSetpoint();  // return true if the sai so is within 
-                                         //the tolerance, nguoc lai thi false
+    return true;
   }
 }

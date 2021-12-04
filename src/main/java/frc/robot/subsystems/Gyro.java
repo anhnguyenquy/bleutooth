@@ -15,7 +15,7 @@ public class Gyro extends SubsystemBase {
   }
 
   private static Gyro gyro = null; 
-  public static Gyro getInstall (){       // Create an gyro instance
+  public static Gyro getInstall (){ 
     if (gyro == null) {
       gyro = new Gyro();
     }
