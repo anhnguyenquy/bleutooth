@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import static frc.robot.Constants.PID.*;
 
-public class CollisionDeteting extends CommandBase {
+public class CollisionDetecting extends CommandBase {
   public Drivebase driver;
   public Timer time;
   public AHRS sensor;
@@ -19,7 +19,7 @@ public class CollisionDeteting extends CommandBase {
   public double last_world_linear_accel_x = 0;
   public double last_world_linear_accel_y = 0;
   /** Creates a new CollisionDeteting. */
-  public CollisionDeteting(Drivebase drivebase, AHRS ahrs) {
+  public CollisionDetecting(Drivebase drivebase, AHRS ahrs) {
     driver = drivebase;
     time = new Timer();
     sensor = ahrs;
