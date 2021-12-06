@@ -7,4 +7,5 @@
 - code xong thì push vào branch của mình **KHÔNG** được push lên main.
 - đặt tên class, variables và functions theo CamelCase (ai không biết thì google)
 - code xong thì nhớ format (Shift+Alt+F)
+- mỗi lần commit thì comment rõ lần commit đó làm được những gì
 ```
