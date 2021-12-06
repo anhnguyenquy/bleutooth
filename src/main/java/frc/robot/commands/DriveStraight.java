@@ -41,7 +41,7 @@ public class DriveStraight extends CommandBase {
   @Override
   public void execute() {
     double curr_angle = gyro.getYaw();
-    double error = (curr_angle - angle) * kStraightConstant;
+    double error = curr_angle*kStraightConstant;
     SmartDashboard.putNumber("Angle", curr_angle);
     SmartDashboard.putNumber("error", error);
     drive.drive(speed - error, speed + error);

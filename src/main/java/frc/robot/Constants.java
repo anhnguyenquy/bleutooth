@@ -36,7 +36,7 @@ public final class Constants {
         public static final double kP = 1.0/180;
         public static final double kD = 1.0/180;
         public static final double kI = 1.0/180;
-        public static final double kStraightConstant = 2/3;
+        public static final double kStraightConstant = 0.05;
         
         public static final double kCollisionThreshold_DeltaG = 0.1;
 
@@ -44,6 +44,12 @@ public final class Constants {
         public static final double kToleranceAngularVelocity =  0.08f;                    //  Sai số giới hạn
         
     }
-
+    public static final class DRIVE_CONST {
+        public static final int LEFT_MASTER_CAN = 07;
+        public static final int LEFT_FOLLOW_CAN = 05;
+        public static final int RIGHT_MASTER_CAN = 03;
+        public static final int RIGHT_FOLLOW_CAN = 11;
+    }
+    //public static final class STICK_CONST {
     
 }

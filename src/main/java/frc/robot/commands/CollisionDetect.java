@@ -30,27 +30,28 @@ public class CollisionDetect extends CommandBase {
   // Called when the command is initially scheduled.123
   @Override
   public void initialize() {
-    time.start();
+    time.start(); // Bắt đầu chạy đồng hồ
     
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double current_time = time.get();
-    double curr_world_linear_accel_x = sensor.getWorldLinearAccelX();
-    double curr_world_linear_accel_y = sensor.getWorldLinearAccelY();
-    while (current_time <= 30) {
-      boolean collisionDetected = false;
+    double current_time = time.get(); // Lấy thời gian vào thời điểm đo 
+    double curr_world_linear_accel_x = sensor.getWorldLinearAccelX(); // lấy thông số gia tốc theo phương x từ sensor
+    double curr_world_linear_accel_y = sensor.getWorldLinearAccelY(); // Lấy thông số gia tốc theo phương y từ sensor
+    while (current_time <= 30) { 
+      boolean collisionDetected = false; 
 
-      double delta_time = current_time - last_time;
-      double delta_accel_x = curr_world_linear_accel_x - last_world_linear_accel_x;
+      double delta_time = current_time - last_time; // Độ chênh lệch thời gian = thời gian hiện tại - cũ
+      double delta_accel_x = curr_world_linear_accel_x - last_world_linear_accel_x; // Độ chênh lệch gia tốc
       double delta_accel_y = curr_world_linear_accel_y - last_world_linear_accel_y;
 
       if (delta_time == 1){
         if ( ( Math.abs(delta_accel_x) > kCollisionThreshold_DeltaG ) || ( Math.abs(delta_accel_y) > kCollisionThreshold_DeltaG) )  {
           collisionDetected = true;
-          SmartDashboard.putBoolean(  "CollisionDetected", collisionDetected);
+          SmartDashboard.putBoolean(  "CollisionDetected", collisionDetected); // nếu một trong 2 độ biến thiên gia tốc lớn hơn 1 
+                                                                              //hằng số xác định thì tính là va chạm
     }
   }
       last_world_linear_accel_x = curr_world_linear_accel_x;

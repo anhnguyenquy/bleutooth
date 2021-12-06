@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.XboxController;
 //import frc.robot.commands.ExampleCommand;
 //import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
-//import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.Autotask;
 import frc.robot.subsystems.Drivebase;
@@ -29,6 +29,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   public static final Joystick stic = new Joystick(1);
+  public static Joystick logitech = new Joystick(0);
 
   //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   public static Drivebase drive = new Drivebase();
@@ -52,7 +53,7 @@ public class RobotContainer {
    * @param trigger
    */
   private void configureButtonBindings(Trigger trigger) {
-    //new JoystickButton(stic, 1).whenActive( straight);
+    new JoystickButton(stic, 1).whenActiveOnce(straight);
   }
 
   /**
