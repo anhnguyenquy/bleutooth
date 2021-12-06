@@ -1,57 +1,48 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot;
-//import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.SpeedController;
-/**
- * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
- * constants. This class should not be used for any other purpose. All constants should be declared
- * globally (i.e. public static). Do not put anything functional in this class.
- *
- * <p>It is advised to statically import this class (or one of its inner classes) wherever the
- * constants are needed, to reduce verbosity.
- */
 public final class Constants {
-    public final static class spin{
-        public static final int Rightfollow = 1;
-        public static final int Leftfollow = 2;
-        public static final int Rightmaster = 3;
-        public static final int Leftmaster = 4;
-    public final static class joystick{
-        public static final int stick = 1;
+
+    public final static class Buttons {
+        // Mấy cái này sẽ phải thay lại theo số của Game Controller
+        public static int speedUpButton = 7;
+        public static int driveRight = 1; // nút di chuyển các bánh bên phải về phía trước
+        public static int driveLeft = 3;  // nút di chuyển các bánh bên trái về phía trước
     }
-    public final static class speed{
-        public static final double speed1 = 0.4;
-        public static final double speed2 = 0.5;
-        public static final double drivescrew = 0.2; 
+    public final static class Motors { // tên class đặt CamelCase đi
+        // Mấy cái này cũng sẽ phải đặt lại theo ID mỗi cái Talon trên Driver Station
+        public static int rightMaster = 1;
+        public static int leftMaster = 2;
+        public static int rightFollow1 = 3;
+        public static int leftFollow1 = 4;
+        public static int rightFollow2 = 5;
+        public static int leftFollow2 = 6;
+
+        public static int intaker1 = 7;
+        public static int intaker2 = 8;
+        public static int intaker3 = 9;
     }
-    public final static class suckerWheel {
-        public static final int sucker = 1;
+
+    public final static class Joystick {
+        public static int stick = 1; // stick 1 để chạy thẳng
     }
-}
-    public static WPI_TalonSRX [] wheel = new WPI_TalonSRX[9]; // int device number is the channel number
-    
+
+    public final static class Speed {
+        public static double speed1 = 0.4;
+        public static double speed2 = 0.5;
+        public static double driveScrew = 0.2;
+    }
+
+    public final static class SuckerWheel {
+        public static int sucker = 1;
+    }
+
     public static final class PID {
-        public static final double kP = 1.0/180;
-        public static final double kD = 1.0/180;
-        public static final double kI = 1.0/180;
-        public static final double kCollisionThreshold_DeltaG  = 1.0/180;
-
-        public static final double kToleranceDegress =  2.0f;                    //  Sai số giới hạn
-        public static final double kToleranceAngularVelocity =  0.08f;                    //  Sai số giới hạn
-    }
-    public static final class Interface{
-        public static final SpeedController rm = wheel[0];
-        public static final SpeedController lm = wheel[1];
-
-    }
-    
-
-    //public static final class Interface {
-        //public static final SpeedController rm = wheel[0] ; 
+        public static double kP = 1.0 / 180;
+        public static double kD = 1.0 / 180;
+        public static double kI = 1.0 / 180;
+        public static double kCollisionThreshold_DeltaG = 1.0 / 180;
+        public static double kToleranceDegress = 2.0f;
+        public static double kToleranceAngularVelocity = 0.08f;
     }
 
+}

@@ -1,41 +1,33 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drivebase;
 
-
 public class DriveStraight extends CommandBase {
-  public Drivebase drift = new Drivebase(4);
-  public double k;
-  /** Creates a new DriveStraight. */
-  public DriveStraight(Drivebase drove, double j) {
-    drift = drove;
-    k = j;
-    addRequirements(drift);
-    // Use addRequirements() here to declare subsystem dependencies.
+
+  private Drivebase drivebase;
+  private double v;
+
+  public DriveStraight(Drivebase drivebase, double v) {
+    this.drivebase = drivebase;
+    this.v = v;
+    addRequirements(this.drivebase);
   }
 
-  // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    drift.drive (k, k);
+    drivebase.drive(v, v); // Speed 2 bên đều là v do đi thẳng
   }
 
-  // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    drift.drive (0, 0);
+    drivebase.drive(0, 0); // Set speed 2 bên về 0 để dừng bot
   }
 
-  // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return true;
