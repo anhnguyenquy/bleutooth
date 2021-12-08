@@ -6,7 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import static frc.robot.Constants.*;
 
-public class Drivebase extends SubsystemBase {
+public class DriveBase extends SubsystemBase {
 
   public WPI_TalonSRX rightMaster;
   public WPI_TalonSRX leftMaster;
@@ -15,7 +15,7 @@ public class Drivebase extends SubsystemBase {
   public WPI_TalonSRX rightFollow2;
   public WPI_TalonSRX leftFollow2;
 
-  public Drivebase() {
+  public DriveBase() {
     rightMaster = new WPI_TalonSRX(Motors.rightMaster);
     rightMaster.setNeutralMode(NeutralMode.Brake);
 

@@ -9,12 +9,13 @@ import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
 public class RobotContainer {
-
-  public static final Joystick stick = new Joystick(Constants.Joystick.stick);
-  public static Drivebase drive = new Drivebase();
+  public static final Joystick stick = new Joystick(Constants.Joystick.stickPort);
+  public static DriveBase drive = new DriveBase();
   public static Intakers intakers = new Intakers();
+
   Command auto = new Auto(intakers, drive);
   Command driveStraight = new DriveStraight(drive, 0.3);
+  Command rotate = new RotateAngle(drive, stick.getRawAxis(Constants.Joystick.Axes.HIDYawAxis));
 
   public RobotContainer() {
     configureButtonBindings();
@@ -27,7 +28,8 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(stick, 1).whenActive(driveStraight); // Khi ấn nút 1 trên joystick thì bot chạy thẳng
+    new JoystickButton(stick, Constants.Joystick.Buttons.driveStraightBind).whenActive(driveStraight); // Khi ấn nút 1 trên joystick thì bot chạy thẳng
+    new JoystickButton(stick, Constants.Joystick.Buttons.rotateBind).whenActive(rotate);
   }
 
   /**
@@ -36,6 +38,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return driveStraight;
+    return auto;
   }
 }
