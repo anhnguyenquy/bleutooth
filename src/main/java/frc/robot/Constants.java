@@ -24,6 +24,7 @@ public final class Constants {
 
     public final static class Joystick {
         public static int stick = 1; // stick 1 để chạy thẳng
+        public static int stick2 = 2; // stick 2 để điều chỉnh tốc độ và rẽ
     }
 
     public final static class Speed {
@@ -43,6 +44,13 @@ public final class Constants {
         public static double kCollisionThreshold_DeltaG = 1.0 / 180;
         public static double kToleranceDegress = 2.0f;
         public static double kToleranceAngularVelocity = 0.08f;
+        public static final double kToleranceStraight = 0.1f;
+        public static final double kStraightConstant = 0.08;
     }
-
+    public static final class speed {
+        public static final double maxSpeed = 1500;
+    }
+    public static final class WheelDiameter{
+        public static final double diameter = 2.56;
+    }
 }

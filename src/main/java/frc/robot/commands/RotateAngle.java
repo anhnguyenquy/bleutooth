@@ -3,16 +3,16 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.TurnController;
-import frc.robot.subsystems.Drivebase;
+import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.Gyro;
 
 public class RotateAngle extends CommandBase {
 
-  private final Drivebase m_drivebase;
+  private final DriveBase m_drivebase;
   private final Gyro m_gyro;
   public TurnController turnController;
 
-  public RotateAngle(Drivebase drivebase, double angle) {
+  public RotateAngle(DriveBase drivebase, double angle) {
     m_drivebase = drivebase;
     m_gyro = Gyro.getInstance();
     turnController = new TurnController();

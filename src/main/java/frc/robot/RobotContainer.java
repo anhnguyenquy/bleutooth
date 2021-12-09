@@ -11,7 +11,8 @@ import frc.robot.subsystems.*;
 public class RobotContainer {
 
   public static final Joystick stick = new Joystick(Constants.Joystick.stick);
-  public static Drivebase drive = new Drivebase();
+  public static final Joystick stick2 = new Joystick(Constants.Joystick.stick2);
+  public static DriveBase drive = new DriveBase();
   public static Intakers intakers = new Intakers();
   Command auto = new Auto(intakers, drive);
   Command driveStraight = new DriveStraight(drive, 0.3);

@@ -2,20 +2,20 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import com.kauailabs.navx.frc.AHRS;
-import frc.robot.subsystems.Drivebase;
+import frc.robot.subsystems.DriveBase;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import static frc.robot.Constants.PID.*;
 
 public class CollisionDetect extends CommandBase {
-  public Drivebase driver;
+  public DriveBase driver;
   public Timer time;
   public AHRS sensor;
   public double last_time = 0;
   public double last_world_linear_accel_x = 0;
   public double last_world_linear_accel_y = 0;
 
-  public CollisionDetect(Drivebase drivebase, AHRS ahrs) {
+  public CollisionDetect(DriveBase drivebase, AHRS ahrs) {
     driver = drivebase;
     time = new Timer();
     sensor = ahrs;

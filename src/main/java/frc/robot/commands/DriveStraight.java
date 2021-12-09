@@ -1,14 +1,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Drivebase;
+import frc.robot.subsystems.DriveBase;
 
 public class DriveStraight extends CommandBase {
 
-  private Drivebase drivebase;
+  private DriveBase drivebase;
   private double v;
 
-  public DriveStraight(Drivebase drivebase, double v) {
+  public DriveStraight(DriveBase drivebase, double v) {
     this.drivebase = drivebase;
     this.v = v;
     addRequirements(this.drivebase);
