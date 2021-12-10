@@ -12,10 +12,8 @@ public final class Constants {
         // Mấy cái này cũng sẽ phải đặt lại theo ID mỗi cái Talon trên Driver Station
         public static int rightMaster = 1;
         public static int leftMaster = 2;
-        public static int rightFollow1 = 3;
-        public static int leftFollow1 = 4;
-        public static int rightFollow2 = 5;
-        public static int leftFollow2 = 6;
+        public static int rightFollow = 3;
+        public static int leftFollow = 4;
 
         public static int intaker1 = 7;
         public static int intaker2 = 8;
@@ -29,7 +27,6 @@ public final class Constants {
     public final static class Speed {
         public static double speed1 = 0.4;
         public static double speed2 = 0.5;
-        public static double driveScrew = 0.2;
     }
 
     public final static class SuckerWheel {

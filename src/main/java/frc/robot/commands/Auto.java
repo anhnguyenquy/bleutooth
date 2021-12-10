@@ -8,9 +8,9 @@ public class Auto extends ParallelCommandGroup {
   
   public Auto(Intakers intakers, Drivebase drive ) {
     addCommands(
-      new Suck(intakers),
-      new DriveStraight(drive, 0.8),
-      new RotateAngle(drive, 50.0)
+      // new Suck(intakers),
+      new DriveStraight(drive, 0.8)
+      // new RotateAngle(drive, 50.0)
     );
   }
   

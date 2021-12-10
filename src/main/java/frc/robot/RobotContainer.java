@@ -10,11 +10,11 @@ import frc.robot.subsystems.*;
 
 public class RobotContainer {
 
-  public static final Joystick stick = new Joystick(Constants.Joystick.stick);
+  // public static final Joystick stick = new Joystick(Constants.Joystick.stick);
   public static Drivebase drive = new Drivebase();
-  public static Intakers intakers = new Intakers();
-  Command auto = new Auto(intakers, drive);
-  Command driveStraight = new DriveStraight(drive, 0.3);
+  // public static Intakers intakers = new Intakers();
+  // Command auto = new Auto(intakers, drive);
+  Command driveStraight = new DriveStraight(drive, 1);
 
   public RobotContainer() {
     configureButtonBindings();
@@ -27,7 +27,7 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(stick, 1).whenActive(driveStraight); // Khi ấn nút 1 trên joystick thì bot chạy thẳng
+    // new JoystickButton(stick, 1).whenActive(driveStraight); // Khi ấn nút 1 trên joystick thì bot chạy thẳng
   }
 
   /**

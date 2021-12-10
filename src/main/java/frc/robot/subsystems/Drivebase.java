@@ -1,7 +1,6 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.RobotContainer;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import static frc.robot.Constants.*;
@@ -23,21 +22,14 @@ public class Drivebase extends SubsystemBase {
     leftMaster.setNeutralMode(NeutralMode.Brake);
     leftMaster.setInverted(true);
 
-    rightFollow1 = new WPI_TalonSRX(Motors.rightFollow1);
+    rightFollow1 = new WPI_TalonSRX(Motors.rightFollow);
     rightFollow1.setNeutralMode(NeutralMode.Brake);
     rightFollow1.follow(rightMaster);
 
-    leftFollow1 = new WPI_TalonSRX(Motors.leftFollow1);
+    leftFollow1 = new WPI_TalonSRX(Motors.leftFollow);
     leftFollow1.setNeutralMode(NeutralMode.Brake);
     leftFollow1.follow(leftMaster);
 
-    rightFollow2 = new WPI_TalonSRX(Motors.rightFollow2);
-    rightFollow2.setNeutralMode(NeutralMode.Brake);
-    rightFollow2.follow(rightMaster);
-
-    leftFollow2 = new WPI_TalonSRX(Motors.leftFollow2);
-    leftFollow2.setNeutralMode(NeutralMode.Brake);
-    leftFollow2.follow(leftMaster);
   }
 
   public void drive(double rightSpeed, double leftSpeed) {
@@ -47,13 +39,16 @@ public class Drivebase extends SubsystemBase {
 
   @Override
   public void periodic() {
-    double boost = RobotContainer.stick.getRawButton(Buttons.speedUpButton) ? 0.8 : 0.4;
+    // double boost = RobotContainer.stick.getRawButton(Buttons.speedUpButton) ? 0.8
+    // : 0.4;
 
     // Hiểu đơn giản chỗ này là nếu ấn nút lái bên nào thì biến driving bên đó trả
     // về 1 còn ko thì trả về 0
-    int drivingRight = RobotContainer.stick.getRawAxis(Buttons.driveRight) > 0 ? 1 : 0;
-    int drivingLeft = RobotContainer.stick.getRawAxis(Buttons.driveLeft) > 0 ? 1 : 0;
+    // int drivingRight = RobotContainer.stick.getRawAxis(Buttons.driveRight) > 0 ?
+    // 1 : 0;
+    // int drivingLeft = RobotContainer.stick.getRawAxis(Buttons.driveLeft) > 0 ? 1
+    // : 0;
 
-    drive(drivingRight * boost, drivingLeft * boost);
+    // drive(drivingRight * boost, drivingLeft * boost);
   }
 }
