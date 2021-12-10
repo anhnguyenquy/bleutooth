@@ -15,8 +15,8 @@ public class CollisionDetect extends CommandBase {
   public double last_world_linear_accel_x = 0;
   public double last_world_linear_accel_y = 0;
 
-  public CollisionDetect(DriveBase drivebase, AHRS ahrs) {
-    driver = drivebase;
+  public CollisionDetect(DriveBase DriveBase, AHRS ahrs) {
+    driver = DriveBase;
     time = new Timer();
     sensor = ahrs;
     addRequirements(driver);

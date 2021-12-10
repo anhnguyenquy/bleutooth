@@ -16,8 +16,9 @@ public class GoStraight extends CommandBase {
   private DriveBase drive = new DriveBase();
   private Gyro gyro = new Gyro();
   private TurnController turnController = new TurnController();
-  public double angle; 
+  public double angle;
   public double speed;
+
   /** Creates a new DriveStraight. */
   public GoStraight(DriveBase dr, Gyro gyr, TurnController tController, double ang, double v) {
     drive = dr;
@@ -25,10 +26,10 @@ public class GoStraight extends CommandBase {
     turnController = tController;
     angle = ang;
     speed = v;
+    // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(drive);
     addRequirements(gyro);
     addRequirements(turnController);
-    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -42,10 +43,10 @@ public class GoStraight extends CommandBase {
   @Override
   public void execute() {
     double curr_angle = gyro.getYaw();
-    double error = curr_angle*kStraightConstant;
-    SmartDashboard.putNumber("Angle",curr_angle);
-    SmartDashboard.putNumber("error",error);
-    drive.drive(speed - error,speed + error);
+    double error = curr_angle * kStraightConstant;
+    SmartDashboard.putNumber("Angle", curr_angle);
+    SmartDashboard.putNumber("error", error);
+    drive.drive(speed - error, speed + error);
   }
 
   // Called once the command ends or is interrupted.

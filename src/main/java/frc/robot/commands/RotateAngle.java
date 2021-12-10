@@ -8,39 +8,42 @@ import frc.robot.subsystems.Gyro;
 
 public class RotateAngle extends CommandBase {
 
-  private final DriveBase m_drivebase;
+  private final DriveBase m_DriveBase;
   private final Gyro m_gyro;
   public TurnController turnController;
 
-  public RotateAngle(DriveBase drivebase, double angle) {
-    m_drivebase = drivebase;
+  public RotateAngle(DriveBase DriveBase, double angle) {
+    m_DriveBase = DriveBase;
     m_gyro = Gyro.getInstance();
     turnController = new TurnController();
     turnController.setSetPoint(angle);
-    turnController.enableContinuousInput(-180, 180); // quay liên tục giữa -180 và 180 độ để đảm bảo gần vs setpoint nhất có thể
+    turnController.enableContinuousInput(-180, 180); // quay liên tục giữa -180 và 180 độ để đảm bảo gần vs setpoint
+                                                     // nhất có thể
     turnController.setIntegratorRange(-10, 1); // set range kI từ -10 đến 1
     turnController.setTolerance();
-    addRequirements(m_drivebase);
+    addRequirements(m_DriveBase);
     addRequirements(m_gyro);
   }
 
   @Override
   public void initialize() {
+    SmartDashboard.putBoolean("start", true);
+    m_gyro.reset();
+    turnController.reset();
   }
 
   @Override
   public void execute() {
-    SmartDashboard.putBoolean("start", true);
     SmartDashboard.putNumber("angle", m_gyro.getYaw());
     double speed = turnController.calculate(m_gyro.getYaw());
     speed += Math.signum(speed) * 0.1;
     speed = Math.min(0.6, Math.max(-0.6, speed));
-    m_drivebase.drive(-speed, speed);
+    m_DriveBase.drive(-speed, speed);
   }
 
   @Override
   public void end(boolean interrupted) {
-    m_drivebase.drive(0, 0);
+    m_DriveBase.drive(0, 0);
     SmartDashboard.putBoolean("start", false);
   }
 

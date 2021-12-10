@@ -8,14 +8,18 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
+import static frc.robot.Constants.Joysticks;
+
 public class RobotContainer {
 
-  public static final Joystick stick = new Joystick(Constants.Joystick.stick);
-  public static final Joystick stick2 = new Joystick(Constants.Joystick.stick2);
-  public static DriveBase drive = new DriveBase();
-  public static Intakers intakers = new Intakers();
-  Command auto = new Auto(intakers, drive);
-  Command driveStraight = new DriveStraight(drive, 0.3);
+  public static final Joystick driveStick = new Joystick(Joysticks.driveStick);
+  public static final Joystick turnStick = new Joystick(Joysticks.turnStick);
+  private static DriveBase drive = new DriveBase();
+  private static Intakers intakers = new Intakers();
+
+  private Command auto = new Auto(intakers, drive);
+  private Command driveStraight = new DriveStraight(drive, 0.3);
+  private Command rotate = new RotateAngle(drive, turnStick.getRawAxis(Joysticks.Axes.xAxis));
 
   public RobotContainer() {
     configureButtonBindings();
@@ -28,7 +32,8 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(stick, 1).whenActive(driveStraight); // Khi ấn nút 1 trên joystick thì bot chạy thẳng
+    new JoystickButton(driveStick, Joysticks.Buttons.driveStraightBind).whileActiveOnce(driveStraight); // Khi ấn nút 1 trên joystick thì bot chạy thẳng
+    new JoystickButton(turnStick, Joysticks.Buttons.turnBind).whileActiveOnce(rotate);
   }
 
   /**
@@ -37,6 +42,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return driveStraight;
+    return auto;
   }
 }

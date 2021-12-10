@@ -5,13 +5,13 @@ import frc.robot.subsystems.DriveBase;
 
 public class DriveStraight extends CommandBase {
 
-  private DriveBase drivebase;
+  private DriveBase DriveBase;
   private double v;
 
-  public DriveStraight(DriveBase drivebase, double v) {
-    this.drivebase = drivebase;
+  public DriveStraight(DriveBase DriveBase, double v) {
+    this.DriveBase = DriveBase;
     this.v = v;
-    addRequirements(this.drivebase);
+    addRequirements(this.DriveBase);
   }
 
   @Override
@@ -20,12 +20,12 @@ public class DriveStraight extends CommandBase {
 
   @Override
   public void execute() {
-    drivebase.drive(v, v); // Speed 2 bên đều là v do đi thẳng
+    DriveBase.drive(v, v); // Speed 2 bên đều là v do đi thẳng
   }
 
   @Override
   public void end(boolean interrupted) {
-    drivebase.drive(0, 0); // Set speed 2 bên về 0 để dừng bot
+    DriveBase.drive(0, 0); // Set speed 2 bên về 0 để dừng bot
   }
 
   @Override

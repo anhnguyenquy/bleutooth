@@ -47,12 +47,12 @@ public class DriveBase extends SubsystemBase {
 
   @Override
   public void periodic() {
-    double boost = RobotContainer.stick.getRawButton(Buttons.speedUpButton) ? 0.8 : 0.4;
+    double boost = RobotContainer.driveStick.getRawButton(Joysticks.Buttons.speedUpBind) ? 0.8 : 0.4;
 
     // Hiểu đơn giản chỗ này là nếu ấn nút lái bên nào thì biến driving bên đó trả
     // về 1 còn ko thì trả về 0
-    int drivingRight = RobotContainer.stick.getRawAxis(Buttons.driveRight) > 0 ? 1 : 0;
-    int drivingLeft = RobotContainer.stick.getRawAxis(Buttons.driveLeft) > 0 ? 1 : 0;
+    int drivingRight = RobotContainer.driveStick.getRawAxis(Joysticks.Buttons.driveRightBind) > 0 ? 1 : 0;
+    int drivingLeft = RobotContainer.driveStick.getRawAxis(Joysticks.Buttons.driveLeftBind) > 0 ? 1 : 0;
 
     drive(drivingRight * boost, drivingLeft * boost);
   }
