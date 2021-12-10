@@ -6,13 +6,13 @@ import frc.robot.subsystems.TurnController;
 import frc.robot.subsystems.Drivebase;
 import frc.robot.subsystems.Gyro;
 
-public class RotateAngle extends CommandBase {
+public class Rotate extends CommandBase {
 
   private final Drivebase m_drivebase;
   private final Gyro m_gyro;
   public TurnController turnController;
 
-  public RotateAngle(Drivebase drivebase, double angle) {
+  public Rotate(Drivebase drivebase, double angle) {
     m_drivebase = drivebase;
     m_gyro = Gyro.getInstance();
     turnController = new TurnController();

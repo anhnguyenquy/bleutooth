@@ -10,7 +10,7 @@ public class Auto extends ParallelCommandGroup {
     addCommands(
       // new Suck(intakers),
       new DriveStraight(drive, 0.8)
-      // new RotateAngle(drive, 50.0)
+      // new Rotate(drive, 50.0)
     );
   }
   

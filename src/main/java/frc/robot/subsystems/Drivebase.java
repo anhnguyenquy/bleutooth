@@ -9,10 +9,8 @@ public class Drivebase extends SubsystemBase {
 
   public WPI_TalonSRX rightMaster;
   public WPI_TalonSRX leftMaster;
-  public WPI_TalonSRX rightFollow1;
-  public WPI_TalonSRX leftFollow1;
-  public WPI_TalonSRX rightFollow2;
-  public WPI_TalonSRX leftFollow2;
+  public WPI_TalonSRX rightFollow;
+  public WPI_TalonSRX leftFollow;
 
   public Drivebase() {
     rightMaster = new WPI_TalonSRX(Motors.rightMaster);
@@ -22,13 +20,13 @@ public class Drivebase extends SubsystemBase {
     leftMaster.setNeutralMode(NeutralMode.Brake);
     leftMaster.setInverted(true);
 
-    rightFollow1 = new WPI_TalonSRX(Motors.rightFollow);
-    rightFollow1.setNeutralMode(NeutralMode.Brake);
-    rightFollow1.follow(rightMaster);
+    rightFollow = new WPI_TalonSRX(Motors.rightFollow);
+    rightFollow.setNeutralMode(NeutralMode.Brake);
+    rightFollow.follow(rightMaster);
 
-    leftFollow1 = new WPI_TalonSRX(Motors.leftFollow);
-    leftFollow1.setNeutralMode(NeutralMode.Brake);
-    leftFollow1.follow(leftMaster);
+    leftFollow = new WPI_TalonSRX(Motors.leftFollow);
+    leftFollow.setNeutralMode(NeutralMode.Brake);
+    leftFollow.follow(leftMaster);
 
   }
 
