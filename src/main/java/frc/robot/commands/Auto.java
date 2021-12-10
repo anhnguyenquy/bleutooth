@@ -5,11 +5,6 @@ import frc.robot.subsystems.Intakers;
 import frc.robot.subsystems.DriveBase;
 
 import static frc.robot.Constants.Angles.Autonomous;
-
-public class Auto extends ParallelCommandGroup {
-  
-  public Auto(Intakers intakers, DriveBase drive) {
-
 public class Auto extends ParallelCommandGroup {
   
   public Auto(Intakers intakers, DriveBase drive ) {
