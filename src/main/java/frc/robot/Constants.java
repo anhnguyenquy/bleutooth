@@ -1,55 +1,53 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-/**
- * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
- * constants. This class should not be used for any other purpose. All constants should be declared
- * globally (i.e. public static). Do not put anything functional in this class.
- *
- * <p>It is advised to statically import this class (or one of its inner classes) wherever the
- * constants are needed, to reduce verbosity.
- */
-public final class Constants {
-    public final static class spin{
-        public static final int Rightfollow = 1;
-        public static final int Leftfollow = 2;
-        public static final int Rightmaster = 3;
-        public static final int Leftmaster = 4;
-    }
-    public final static class joystick{
-        public static final int stick = 1;
-    }
-    public final static class speed{
-        public static final double speed1 = 0.8;
-        public static final double speed2 = 0.5;
-    }
-    public final static class suckerWheel {
-        public static final int sucker = 1;
-    }
-    public static class ArrayConstant {
-        public static WPI_TalonSRX [] wheel = new WPI_TalonSRX[9];
-    }
-    public static final class PID {
-        public static final double kP = 1.0/180;
-        public static final double kD = 1.0/180;
-        public static final double kI = 1.0/180;
-        public static final double kStraightConstant = 0.05;
-        
-        public static final double kCollisionThreshold_DeltaG = 0.1;
 
-        public static final double kToleranceDegress =  2.0f;                    //  Sai số giới hạn
-        public static final double kToleranceAngularVelocity =  0.08f;                    //  Sai số giới hạn
-        
+public final class Constants {
+
+    public final static class Buttons {
+        // Mấy cái này sẽ phải thay lại theo số của Game Controller
+        public static int speedUpButton = 7;
+        public static int driveRight = 1; // nút di chuyển các bánh bên phải về phía trước
+        public static int driveLeft = 3;  // nút di chuyển các bánh bên trái về phía trước
     }
-    public static final class DRIVE_CONST {
-        public static final int LEFT_MASTER_CAN = 07;
-        public static final int LEFT_FOLLOW_CAN = 05;
-        public static final int RIGHT_MASTER_CAN = 03;
-        public static final int RIGHT_FOLLOW_CAN = 11;
+    public final static class Motors { // tên class đặt CamelCase đi
+        // Mấy cái này cũng sẽ phải đặt lại theo ID mỗi cái Talon trên Driver Station
+        public static int rightMaster = 1;
+        public static int leftMaster = 2;
+        public static int rightFollow = 3;
+        public static int leftFollow = 4;
+
+        public static int intaker1 = 7;
+        public static int intaker2 = 8;
+        public static int intaker3 = 9;
     }
-    //public static final class STICK_CONST {
-    
+
+    public final static class Joystick {
+        public static int stick = 1; // stick 1 để chạy thẳng
+        public static int stick2 = 2; // stick 2 để điều chỉnh tốc độ và rẽ
+    }
+
+    public final static class Speed {
+        public static double speed1 = 0.4;
+        public static double speed2 = 0.5;
+    }
+
+    public final static class SuckerWheel {
+        public static int sucker = 1;
+    }
+
+    public static final class PID {
+        public static double kP = 1.0 / 180;
+        public static double kD = 1.0 / 180;
+        public static double kI = 1.0 / 180;
+        public static double kCollisionThreshold_DeltaG = 1.0 / 180;
+        public static double kToleranceDegress = 2.0f;
+        public static double kToleranceAngularVelocity = 0.08f;
+        public static final double kToleranceStraight = 0.1f;
+        public static final double kStraightConstant = 0.08;
+    }
+    public static final class speed {
+        public static final double maxSpeed = 1500;
+    }
+    public static final class WheelDiameter{
+        public static final double diameter = 2.56;
+    }
 }
