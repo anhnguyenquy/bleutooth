@@ -10,7 +10,7 @@ public class Rotate extends CommandBase {
 
   private final Drivebase m_drivebase;
   private final Gyro m_gyro;
-  public TurnController turnController;
+  private TurnController turnController;
 
   public Rotate(Drivebase drivebase, double angle) {
     m_drivebase = drivebase;

@@ -17,14 +17,44 @@ public class Intakers extends SubsystemBase {
   }
 
   public void start() {
-    intaker1.set(Speed.speed1);
-    intaker2.set(-Speed.speed1);
-    intaker3.set(Speed.speed1);
+    intaker1.set(Speed.defaultIntakerSpeed);
+    intaker2.set(-Speed.defaultIntakerSpeed);
+    intaker3.set(Speed.defaultIntakerSpeed);
   }
 
   public void stop() {
     intaker1.set(0);
     intaker2.set(0);
+    intaker3.set(0);
+  }
+
+  public void startIntaker1Normal() {
+    intaker1.set(Speed.defaultIntakerSpeed);
+  }
+  public void startIntaker1Reverse() {
+    intaker1.set(-Speed.defaultIntakerSpeed);
+  }
+  public void stopIntaker1() {
+    intaker1.set(0);
+  }
+
+  public void startIntaker2Normal() {
+    intaker2.set(Speed.defaultIntakerSpeed);
+  }
+  public void startIntaker2Reverse() {
+    intaker2.set(-Speed.defaultIntakerSpeed);
+  }
+  public void stopIntaker2() {
+    intaker2.set(0);
+  }
+
+  public void startIntaker3Normal() {
+    intaker3.set(Speed.defaultIntakerSpeed);
+  }
+  public void startIntaker3Reverse() {
+    intaker3.set(-Speed.defaultIntakerSpeed);
+  }
+  public void stopIntaker3() {
     intaker3.set(0);
   }
 

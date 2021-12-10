@@ -8,12 +8,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import static frc.robot.Constants.PID.*;
 
 public class CollisionDetect extends CommandBase {
-  public Drivebase driver;
-  public Timer time;
-  public AHRS sensor;
-  public double last_time = 0;
-  public double last_world_linear_accel_x = 0;
-  public double last_world_linear_accel_y = 0;
+
+  private Drivebase driver;
+  private Timer time;
+  private AHRS sensor;
+  private double last_time = 0;
+  private double last_world_linear_accel_x = 0;
+  private double last_world_linear_accel_y = 0;
+
   public CollisionDetect(Drivebase drivebase, AHRS ahrs) {
     driver = drivebase;
     time = new Timer();
@@ -21,11 +23,10 @@ public class CollisionDetect extends CommandBase {
     addRequirements(driver);
   }
 
-  // Called when the command is initially scheduled.123
+  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     time.start(); // Bắt đầu chạy đồng hồ
-    
   }
 
   @Override
@@ -64,4 +65,5 @@ public class CollisionDetect extends CommandBase {
   public boolean isFinished() {
     return true;
   }
+  
 }

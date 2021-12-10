@@ -26,12 +26,12 @@ public final class Constants {
     }
 
     public final static class Speed {
-        public static double speed1 = 0.4;
-        public static double speed2 = 0.5;
+        public static double defaultIntakerSpeed = 0.4;
+        public static double defaultMoveSpeed = 0.4;
     }
-
-    public final static class SuckerWheel {
-        public static int sucker = 1;
+    
+    public final static class Time {
+        public static int timeToMove1MeterAtDefaultSpeed = 12345; // in miliseconds 
     }
 
     public static final class PID {
@@ -44,10 +44,5 @@ public final class Constants {
         public static final double kToleranceStraight = 0.1f;
         public static final double kStraightConstant = 0.08;
     }
-    public static final class speed {
-        public static final double maxSpeed = 1500;
-    }
-    public static final class WheelDiameter{
-        public static final double diameter = 2.56;
-    }
+
 }
