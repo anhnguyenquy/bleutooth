@@ -9,7 +9,8 @@ import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
 public class RobotContainer {
-  public static final Joystick stick = new Joystick(Constants.Joystick.stickPort);
+  public static final Joystick stick = new Joystick(Constants.Joystick.driveStick);
+  public static final Joystick stick2 = new Joystick(Constants.Joystick.turnStick);
   public static DriveBase drive = new DriveBase();
   public static Intakers intakers = new Intakers();
 
