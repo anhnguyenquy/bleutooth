@@ -1,7 +1,7 @@
 package frc.robot;
 
 public final class Constants {
-    public final static class Motors { // tên class đặt CamelCase đi
+    public static final class Motors { // tên class đặt CamelCase đi
         // Mấy cái này cũng sẽ phải đặt lại theo ID mỗi cái Talon trên Driver Station
         public static int rightMaster = 1;
         public static int leftMaster = 2;
@@ -15,7 +15,7 @@ public final class Constants {
         public static int intaker3 = 9;
     }
 
-    public final static class Joysticks {
+    public static final class Joysticks {
         // why are these 2 separate sticks again?
         public static int driveStick = 1; // stick 1 để chạy thẳng
         public static int turnStick = 2; // stick 2 để điều chỉnh tốc độ và rẽ
@@ -47,14 +47,14 @@ public final class Constants {
         }
     }
 
-    public final static class Speed {
+    public static final class Speed {
         public static double speed1 = 0.4;
         public static double speed2 = 0.5;
         public static double driveScrew = 0.2;
         public static final double maxSpeed = 1500;
     }
 
-    public final static class SuckerWheel {
+    public static final class SuckerWheel {
         public static int sucker = 1;
     }
 
