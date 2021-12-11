@@ -22,17 +22,18 @@ public class Forward extends CommandBase {
 
   @Override
   public void execute() {
-    drivebase.drive(Speed.defaultMoveSpeed, Speed.defaultMoveSpeed); // Speed 2 bên đều là v do đi thẳng
+    drivebase.drive(Speed.defaultMoveSpeed, Speed.defaultMoveSpeed);
     CustomFunctions.setTimeout(() -> end(true), (int) (Time.timeToMove1MeterAtDefaultSpeed * meters));
   }
 
   @Override
   public void end(boolean interrupted) {
-    drivebase.drive(0, 0); // Set speed 2 bên về 0 để dừng bot
+    drivebase.drive(0, 0);
   }
 
   @Override
   public boolean isFinished() {
     return true;
   }
+  
 }

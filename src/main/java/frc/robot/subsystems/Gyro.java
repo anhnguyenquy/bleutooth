@@ -7,12 +7,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Gyro extends SubsystemBase {
 
   private AHRS ahrs; // consist of sensors on three axes : yaw, roll, pitch
+  private static Gyro gyro = null;
 
   public Gyro() {
     ahrs = new AHRS();
   }
-
-  private static Gyro gyro = null;
 
   public static Gyro getInstance() { 
     if (gyro == null) {
@@ -34,4 +33,5 @@ public class Gyro extends SubsystemBase {
     SmartDashboard.putNumber("X", ahrs.getDisplacementX()); // Liên tục cập nhật giá trị của X lên Dashboard
     SmartDashboard.putNumber("Y", ahrs.getDisplacementY()); // Liên tục cập nhật giá trị của Y lên Dashboard
   }
+  
 }

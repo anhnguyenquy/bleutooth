@@ -3,12 +3,11 @@ package frc.robot;
 public final class Constants {
 
     public final static class Buttons {
-        // Mấy cái này sẽ phải thay lại theo số của Game Controller
         public static int speedUpButton = 7;
-        public static int driveRight = 1; // nút di chuyển các bánh bên phải về phía trước
-        public static int driveLeft = 3;  // nút di chuyển các bánh bên trái về phía trước
+        public static int driveRight = 1;
+        public static int driveLeft = 3;
     }
-    public final static class Motors { // tên class đặt CamelCase đi
+    public final static class Motors { 
         // Mấy cái này cũng sẽ phải đặt lại theo ID mỗi cái Talon trên Driver Station
         public static int rightMaster = 1;
         public static int leftMaster = 2;
@@ -20,9 +19,10 @@ public final class Constants {
         public static int intaker3 = 9;
     }
 
-    public final static class Joystick {
-        public static int stick = 1; // stick 1 để chạy thẳng
-        public static int stick2 = 2; // stick 2 để điều chỉnh tốc độ và rẽ
+    public final static class Controllers {
+        public static int movementController = 1; 
+        public static int intakeController = 2; 
+        public static int sensitivity = 1; // from 0 -> 1
     }
 
     public final static class Speed {

@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Intakers;
 
 public class Suck extends CommandBase {
+  
   private Intakers intakers = new Intakers();
 
   public Suck(Intakers intakers) {
@@ -30,4 +31,5 @@ public class Suck extends CommandBase {
   public boolean isFinished() {
     return true;
   }
+
 }

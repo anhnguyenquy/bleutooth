@@ -6,9 +6,9 @@ import static frc.robot.Constants.*;
 
 public class Intakers extends SubsystemBase {
 
-  public WPI_TalonSRX intaker1;
-  public WPI_TalonSRX intaker2;
-  public WPI_TalonSRX intaker3;
+  private WPI_TalonSRX intaker1;
+  private WPI_TalonSRX intaker2;
+  private WPI_TalonSRX intaker3;
 
   public Intakers() {
     intaker1 = new WPI_TalonSRX(Motors.intaker1);
@@ -62,4 +62,5 @@ public class Intakers extends SubsystemBase {
   public void periodic() {
 
   }
+  
 }

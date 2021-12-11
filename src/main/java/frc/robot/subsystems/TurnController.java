@@ -6,13 +6,12 @@ import static frc.robot.Constants.PID.*;
 
 public class TurnController extends SubsystemBase {
 
-  public PIDController turncontroller;
+  private PIDController turncontroller;
+  private static TurnController tcontroller = null;
 
   public TurnController() {
     turncontroller = new PIDController(kP, kI, kD); 
   }
-
-  private static TurnController tcontroller = null;
 
   public static TurnController getInstance() { // Creates an instance a PIDController
     if (tcontroller == null) {
@@ -56,5 +55,7 @@ public class TurnController extends SubsystemBase {
 
   @Override
   public void periodic() {
+    
   }
+
 }

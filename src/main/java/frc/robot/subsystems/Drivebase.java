@@ -1,16 +1,18 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import static frc.robot.Constants.*;
+import static frc.robot.RobotContainer.*;
 
 public class Drivebase extends SubsystemBase {
 
-  public WPI_TalonSRX rightMaster;
-  public WPI_TalonSRX leftMaster;
-  public WPI_TalonSRX rightFollow;
-  public WPI_TalonSRX leftFollow;
+  private WPI_TalonSRX rightMaster;
+  private WPI_TalonSRX leftMaster;
+  private WPI_TalonSRX rightFollow;
+  private WPI_TalonSRX leftFollow;
 
   public Drivebase() {
     rightMaster = new WPI_TalonSRX(Motors.rightMaster);
@@ -27,7 +29,6 @@ public class Drivebase extends SubsystemBase {
     leftFollow = new WPI_TalonSRX(Motors.leftFollow);
     leftFollow.setNeutralMode(NeutralMode.Brake);
     leftFollow.follow(leftMaster);
-
   }
 
   public void drive(double rightSpeed, double leftSpeed) {
@@ -37,16 +38,15 @@ public class Drivebase extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // double boost = RobotContainer.stick.getRawButton(Buttons.speedUpButton) ? 0.8
-    // : 0.4;
+    double leftInput = movementController.getRawAxis(Axis.kLeftY.value);
+    double rightInput = movementController.getRawAxis(Axis.kRightY.value);
 
-    // Hiểu đơn giản chỗ này là nếu ấn nút lái bên nào thì biến driving bên đó trả
-    // về 1 còn ko thì trả về 0
-    // int drivingRight = RobotContainer.stick.getRawAxis(Buttons.driveRight) > 0 ?
-    // 1 : 0;
-    // int drivingLeft = RobotContainer.stick.getRawAxis(Buttons.driveLeft) > 0 ? 1
-    // : 0;
+    if (leftInput * rightInput < 0) {
+      leftInput = 0;
+      rightInput = 0;
+    }
 
-    // drive(drivingRight * boost, drivingLeft * boost);
+    drive(leftInput * Controllers.sensitivity, rightInput * Controllers.sensitivity);
   }
+  
 }

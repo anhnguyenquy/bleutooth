@@ -48,4 +48,5 @@ public class Rotate extends CommandBase {
   public boolean isFinished() {
     return turnController.atSetpoint();
   }
+  
 }
