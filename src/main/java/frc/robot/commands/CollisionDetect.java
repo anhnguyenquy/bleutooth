@@ -1,69 +1,76 @@
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import com.kauailabs.navx.frc.AHRS;
-import frc.robot.subsystems.Drivebase;
+import frc.robot.subsystems.DriveBase;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import static frc.robot.Constants.PID.*;
 
 public class CollisionDetect extends CommandBase {
-
-  private Drivebase driver;
-  private Timer time;
-  private AHRS sensor;
+  public DriveBase driver;
+  public Timer time;
+  public AHRS sensor;
   private double last_time = 0;
+  private double current_time;
   private double last_world_linear_accel_x = 0;
   private double last_world_linear_accel_y = 0;
-
-  public CollisionDetect(Drivebase drivebase, AHRS ahrs) {
+  private boolean collisionDetected;
+  /** Creates a new CollisionDeteting. */
+  public CollisionDetect(DriveBase drivebase, AHRS ahrs) {
     driver = drivebase;
     time = new Timer();
     sensor = ahrs;
     addRequirements(driver);
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
-  // Called when the command is initially scheduled.
+  // Called when the command is initially scheduled.123
   @Override
   public void initialize() {
-    time.start(); // Bắt đầu chạy đồng hồ
+    time.start(); // start the timer
+    
   }
 
+  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double current_time = time.get(); // Lấy thời gian vào thời điểm đo 
+    current_time = time.get(); // take the current time from the timer
     double curr_world_linear_accel_x = sensor.getWorldLinearAccelX(); // lấy thông số gia tốc theo phương x từ sensor
     double curr_world_linear_accel_y = sensor.getWorldLinearAccelY(); // Lấy thông số gia tốc theo phương y từ sensor
     while (current_time <= 30) { 
-      boolean collisionDetected = false; 
+      collisionDetected = false; 
 
       double delta_time = current_time - last_time; // Độ chênh lệch thời gian = thời gian hiện tại - cũ
       double delta_accel_x = curr_world_linear_accel_x - last_world_linear_accel_x; // Độ chênh lệch gia tốc
       double delta_accel_y = curr_world_linear_accel_y - last_world_linear_accel_y;
 
-      if (delta_time == 1) {
-        if ((Math.abs(delta_accel_x) > kCollisionThreshold_DeltaG)
-            || (Math.abs(delta_accel_y) > kCollisionThreshold_DeltaG)) {
+      if (delta_time == 1){
+        if ( ( Math.abs(delta_accel_x) > kCollisionThreshold_DeltaG ) || ( Math.abs(delta_accel_y) > kCollisionThreshold_DeltaG) )  {
           collisionDetected = true;
-          SmartDashboard.putBoolean("CollisionDetected", collisionDetected);
-        }
-      }
+          SmartDashboard.putBoolean(  "CollisionDetected", collisionDetected); // nếu một trong 2 độ biến thiên gia tốc lớn hơn 1 
+                                                                              //hằng số xác định thì tính là va chạm
+    }
+  }
       last_world_linear_accel_x = curr_world_linear_accel_x;
       curr_world_linear_accel_x = sensor.getWorldLinearAccelX();
       curr_world_linear_accel_y = sensor.getWorldLinearAccelY();
       last_time = current_time;
-      current_time = time.get();
-    }
-  }
+}
+}
 
+  // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     driver.drive(0, 0);
   }
-
+  // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return collisionDetected = true;
   }
-  
 }
