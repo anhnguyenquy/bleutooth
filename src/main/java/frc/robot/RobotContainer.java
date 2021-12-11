@@ -28,7 +28,7 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // new JoystickButton(stick, 1).whenActive(driveStraight); // Khi ấn nút 1 trên joystick thì bot chạy thẳng
+
   }
 
   /**

@@ -22,7 +22,8 @@ public final class Constants {
     public final static class Controllers {
         public static int movementController = 1; 
         public static int intakeController = 2; 
-        public static int sensitivity = 1; // from 0 -> 1
+        public static int sensitivity = 1; // 0 -> 1
+        public static int deadzone = 0; // 0 -> 1
     }
 
     public final static class Speed {
@@ -31,13 +32,13 @@ public final class Constants {
     }
     
     public final static class Time {
-        public static int timeToMove1MeterAtDefaultSpeed = 12345; // in miliseconds 
+        public static int timeToMove1MeterAtDefaultSpeed = 12345; // in milliseconds 
     }
 
     public static final class PID {
         public static double kP = 1.0 / 180;
-        public static double kD = 1.0 / 180;
-        public static double kI = 1.0 / 180;
+        public static double kD = 0;
+        public static double kI = 0;
         public static double kCollisionThreshold_DeltaG = 1.0 / 180;
         public static double kToleranceDegress = 2.0f;
         public static double kToleranceAngularVelocity = 0.08f;

@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.XboxController.Axis;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -39,14 +40,16 @@ public class Drivebase extends SubsystemBase {
   @Override
   public void periodic() {
     double leftInput = movementController.getRawAxis(Axis.kLeftY.value);
+    leftInput = Math.abs(leftInput) > Controllers.deadzone ? leftInput * Controllers.sensitivity : 0;
     double rightInput = movementController.getRawAxis(Axis.kRightY.value);
-
+    rightInput = Math.abs(rightInput) > Controllers.deadzone ? rightInput * Controllers.sensitivity : 0;
     if (leftInput * rightInput < 0) {
       leftInput = 0;
       rightInput = 0;
     }
-
     drive(leftInput * Controllers.sensitivity, rightInput * Controllers.sensitivity);
+    SmartDashboard.putNumber("Left motor's speed", leftInput * Controllers.sensitivity);
+    SmartDashboard.putNumber("Right motor's speed", rightInput * Controllers.sensitivity);
   }
-  
+
 }
