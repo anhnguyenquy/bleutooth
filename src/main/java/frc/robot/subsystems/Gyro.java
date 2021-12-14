@@ -11,7 +11,7 @@ public class Gyro extends SubsystemBase {
   private AHRS ahrs; // consist of sensors on three axis : yaw, roll, pitch
   /** Creates a new Gyro. */
   public Gyro() {
-    ahrs = new AHRS ();
+    ahrs = new AHRS();
   }
 
   private static Gyro gyro = null; 
@@ -28,6 +28,12 @@ public class Gyro extends SubsystemBase {
 
   public double getYaw(){
     return ahrs.getYaw(); // return the yaw value that was report by the sensor (from -180 to 180) 
+  }
+  public double getWorldLinearAccelX(){
+    return ahrs.getWorldLinearAccelX();
+  }
+  public double getWorldLinearAccelY(){
+    return ahrs.getWorldLinearAccelY();
   }
   @Override
   public void periodic() {

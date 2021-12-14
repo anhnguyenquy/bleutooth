@@ -4,20 +4,16 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-//import frc.robot.commands.ExampleCommand;
-//import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 //import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.commands.AutoTask;
+import frc.robot.commands.Autotask;
 import frc.robot.subsystems.DriveBase;
-import frc.robot.commands.Drive;
-import com.kauailabs.navx.frc.AHRS;
+import frc.robot.subsystems.Gyro;
+//import frc.robot.commands.Drive;
 
 //import edu.wpi.first.wpilibj2.Joystick.*;
 
@@ -30,15 +26,12 @@ import com.kauailabs.navx.frc.AHRS;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  public static final Joystick stic = new Joystick(1);
-  public static Joystick logitech = new Joystick(0);
-  public static Encoder encoder = new Encoder (1,2);
-  //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  public static final Joystick stic = new Joystick(7);
+  public static Joystick logitech = new Joystick(15);
   public static DriveBase drive = new DriveBase();
-  public static AHRS ahrs = new AHRS();
-  Command auto = new AutoTask(drive, ahrs, 1);
-  Command manual_drive = new Drive(drive);
+  public static Gyro ahrs = new Gyro();
+  Command auto = new Autotask(drive, ahrs, 40, 100);
+  //Command manual_drive = new Drive(drive);
   
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -57,7 +50,7 @@ public class RobotContainer {
    * @param trigger
    */
   private void configureButtonBindings(Trigger trigger) {
-    new JoystickButton(stic, 1).whenActive(manual_drive); // start dkhien = tay 
+    //new JoystickButton(stic, 1).whenActive(manual_drive); // start dkhien = tay 
   }
 
   /**

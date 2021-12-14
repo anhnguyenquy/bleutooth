@@ -4,22 +4,25 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.DriveBase;
-import com.kauailabs.navx.frc.AHRS;
+import frc.robot.subsystems.Gyro;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class AutoTask extends ParallelCommandGroup {
+public class Autotask extends SequentialCommandGroup {
   /** Creates a new Autotask. */
-  public AutoTask(DriveBase drive,AHRS ahrs, double setPoint) {
+  public Autotask(DriveBase drive,Gyro ahrs,double setPoint,double set_Point) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      //new DriveStraight(drive, 0.5),
-      new CollisionDetect(drive,ahrs),
-      new Straight(drive, setPoint)
+      new RotateAngle(drive, setPoint).withTimeout(2),
+      new ParallelRaceGroup(
+        new CollisionDetect(ahrs),
+        new DriveStraight(drive, set_Point).withTimeout(2)
+      )
     );
   }
 }

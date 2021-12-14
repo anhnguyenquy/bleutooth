@@ -13,8 +13,6 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import static frc.robot.Constants.spin.*;
 //import static frc.robot.Constants.joystick.*;
 
-//import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
 public class DriveBase extends SubsystemBase {
   private WPI_TalonSRX rightMaster = new WPI_TalonSRX(Rightmaster);
   private WPI_TalonSRX leftMaster = new WPI_TalonSRX(Leftmaster);

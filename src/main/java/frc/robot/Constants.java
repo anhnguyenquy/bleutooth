@@ -13,27 +13,24 @@ package frc.robot;
  */
 public final class Constants {
     public final static class spin{
-        public static final int Rightfollow = 1;
-        public static final int Leftfollow = 2;
-        public static final int Rightmaster = 3;
-        public static final int Leftmaster = 4;
+        public static final int Rightfollow = 9;
+        public static final int Leftfollow = 05;
+        public static final int Rightmaster = 03;
+        public static final int Leftmaster = 11;
     }
     public final static class joystick{
-        public static final int right_stick = 1;
-        public static final int left_stick = 2;
+        public static final int right_stick = 8;
+        public static final int left_stick = 6;
         }
     public final static class speed{
         public static final double speed1 = 0.8;
         public static final double speed2 = 0.5;
         public static final double maxSpeed = 1;
     }
-    public final static class suckerWheel {
-        public static final int sucker = 1;
-    }
     public static final class PID {
-        public static final double kP = 1.0/180;
-        public static final double kD = 1.0/180;
-        public static final double kI = 1.0/180;
+        public static final double kP = 0.5;
+        public static final double kD = 0.5;
+        public static final double kI = 0.5;
         public static final double kStraightConstant = 0.05;
         
         public static final double kCollisionThreshold_DeltaG = 0.1;
@@ -41,12 +38,6 @@ public final class Constants {
         public static final double kToleranceDegress =  2.0f;           //  Sai số giới hạn
         public static final double kToleranceAngularVelocity =  0.08f;  //  Sai số giới hạn
         public static final double kToleranceStraight = 0.1f;
-    }
-    public static final class DRIVE_CONST {
-        public static final int LEFT_MASTER_CAN = 7;
-        public static final int LEFT_FOLLOW_CAN = 5;
-        public static final int RIGHT_MASTER_CAN = 3;
-        public static final int RIGHT_FOLLOW_CAN = 11;
     }
     public static final class Wheel_diameter {
         public static final double diameter = 2.56f;
