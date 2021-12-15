@@ -20,7 +20,7 @@ public final class Constants {
     }
 
     public final static class Controllers {
-        public static int movementController = 1; 
+        public static int movementController = 0; 
         public static int intakeController = 2; 
         public static int sensitivity = 1; // 0 -> 1
         public static int deadzone = 0; // 0 -> 1

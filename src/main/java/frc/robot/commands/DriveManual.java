@@ -3,14 +3,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drivebase;
 
-public class DriveStraight extends CommandBase {
+public class DriveManual extends CommandBase {
 
   private Drivebase drivebase;
-  private double v;
 
-  public DriveStraight(Drivebase drivebase, double v) {
+  public DriveManual(Drivebase drivebase) {
     this.drivebase = drivebase;
-    this.v = v;
     addRequirements(this.drivebase);
   }
 
@@ -20,8 +18,8 @@ public class DriveStraight extends CommandBase {
 
   @Override
   public void execute() {
-    // drivebase.drive(v, v); // Speed 2 bên đều là v do đi thẳng
-  }
+
+}
 
   @Override
   public void end(boolean interrupted) {

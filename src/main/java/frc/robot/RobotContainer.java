@@ -15,7 +15,7 @@ public class RobotContainer {
 
   // public static Intakers intakers = new Intakers();
   // Command auto = new Auto(intakers, drive);
-  Command driveStraight = new DriveStraight(drivebase, 1);
+  Command driveManual = new DriveManual(drivebase);
 
   public RobotContainer() {
     configureButtonBindings();
@@ -37,7 +37,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return driveStraight;
+    return driveManual;
   }
 
 }

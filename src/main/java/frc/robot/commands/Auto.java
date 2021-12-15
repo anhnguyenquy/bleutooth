@@ -8,8 +8,8 @@ public class Auto extends ParallelCommandGroup {
   
   public Auto(Intakers intakers, Drivebase drive ) {
     addCommands(
-      new Suck(intakers),
-      new MoveAuto(drive)
+      // new Suck(intakers),
+      // new MoveAuto(drive)
     );
   }
   
