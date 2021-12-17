@@ -14,8 +14,8 @@ import static frc.robot.Constants.spin.*;
 //import static frc.robot.Constants.joystick.*;
 
 public class DriveBase extends SubsystemBase {
-  private WPI_TalonSRX rightMaster = new WPI_TalonSRX(Rightmaster);
-  private WPI_TalonSRX leftMaster = new WPI_TalonSRX(Leftmaster);
+  public WPI_TalonSRX rightMaster = new WPI_TalonSRX(Rightmaster);
+  public WPI_TalonSRX leftMaster = new WPI_TalonSRX(Leftmaster);
   private WPI_TalonSRX rightFollow = new WPI_TalonSRX(Rightfollow);
   private WPI_TalonSRX leftFollow = new WPI_TalonSRX(Leftfollow);
 
@@ -30,6 +30,9 @@ public class DriveBase extends SubsystemBase {
     leftFollow.follow(leftMaster);
     rightMaster.setInverted(true); // Set the motor quay ngược lại
     rightFollow.setInverted(true); // Set the motor quay ngược lại
+    
+    rightMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+    leftMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
   }
 
   public void drive(double rightmaster, double leftmaster) {
@@ -44,13 +47,6 @@ public class DriveBase extends SubsystemBase {
   public void Drive(double rightmaster, double leftmaster) { // Another way to express the velocity in frequency
     rightMaster.set(ControlMode.Velocity, rightmaster); // set the setpoint for wheel
     leftMaster.set(ControlMode.Velocity, leftmaster);
-  }
-
-  public double PID() {
-    rightMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
-    leftMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
-    double v = (rightMaster.getSelectedSensorPosition() + leftMaster.getSelectedSensorPosition())/2;
-    return v;
   }
   
   @Override

@@ -21,7 +21,7 @@ public class Autotask extends SequentialCommandGroup {
       new RotateAngle(drive, setPoint).withTimeout(2),
       new ParallelRaceGroup(
         new CollisionDetect(ahrs),
-        new DriveStraight(drive, set_Point).withTimeout(2)
+        new DriveStraight(drive, set_Point)
       )
     );
   }
