@@ -7,6 +7,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import static frc.robot.Constants.*;
 import static frc.robot.RobotContainer.*;
+import static frc.robot.CustomFunctions.*;
 
 public class Drivebase extends SubsystemBase {
 
@@ -32,24 +33,19 @@ public class Drivebase extends SubsystemBase {
     leftFollow.follow(leftMaster);
   }
 
-  public void drive(double rightSpeed, double leftSpeed) {
-    rightMaster.set(rightSpeed);
+  public void drive(double leftSpeed, double rightSpeed) {
     leftMaster.set(leftSpeed);
+    rightMaster.set(rightSpeed);
   }
 
   @Override
   public void periodic() {
-    double leftInput = movementController.getRawAxis(Axis.kLeftY.value);
-    leftInput = Math.abs(leftInput) > Controllers.deadzone ? leftInput * Controllers.sensitivity : 0;
-    double rightInput = movementController.getRawAxis(Axis.kRightY.value);
-    rightInput = Math.abs(rightInput) > Controllers.deadzone ? rightInput * Controllers.sensitivity : 0;
-    if (leftInput * rightInput < 0) {
-      leftInput = 0;
-      rightInput = 0;
-    }
-    drive(leftInput * Controllers.sensitivity, rightInput * Controllers.sensitivity);
-    SmartDashboard.putNumber("Left motor's speed", leftInput * Controllers.sensitivity);
-    SmartDashboard.putNumber("Right motor's speed", rightInput * Controllers.sensitivity);
+    double boostLeft = 0;
+    double boostRight = 0;
+    boostLeft = movementController.getRawAxis(2) == 1 ? 1 : 0.3;
+    boostRight = movementController.getRawAxis(4) == 1 ? 1 : 0.3;
+    drive(-movementController.getRawAxis(1) * boostLeft,
+    movementController.getRawAxis(5) * boostRight);
   }
 
 }
