@@ -3,7 +3,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.*;
 import frc.robot.Constants.*;
-import frc.robot.CustomFunctions;
+import static frc.robot.CustomFunctions.*;
 
 public class Forward extends CommandBase {
 
@@ -23,7 +23,7 @@ public class Forward extends CommandBase {
   @Override
   public void execute() {
     drivebase.drive(Speed.defaultMoveSpeed, Speed.defaultMoveSpeed);
-    CustomFunctions.setTimeout(() -> end(true), (int) (Time.timeToMove1MeterAtDefaultSpeed * meters));
+    setTimeout(() -> end(true), (int) (Time.timeToMove1MeterAtDefaultSpeed * meters));
   }
 
   @Override

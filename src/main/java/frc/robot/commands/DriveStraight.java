@@ -20,7 +20,7 @@ public class DriveStraight extends CommandBase {
 
   @Override
   public void execute() {
-    // drivebase.drive(v, v); // Speed 2 bên đều là v do đi thẳng
+    drivebase.drive(v, v); // Speed 2 bên đều là v do đi thẳng
   }
 
   @Override

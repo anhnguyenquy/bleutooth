@@ -40,12 +40,9 @@ public class Drivebase extends SubsystemBase {
 
   @Override
   public void periodic() {
-    double boostLeft = 0;
-    double boostRight = 0;
-    boostLeft = movementController.getRawAxis(2) == 1 ? 1 : 0.3;
-    boostRight = movementController.getRawAxis(4) == 1 ? 1 : 0.3;
-    drive(-movementController.getRawAxis(1) * boostLeft,
-    movementController.getRawAxis(5) * boostRight);
+    double boostLeft = movementController.getRawAxis(2) == 1 ? 1 : 0.4;
+    double boostRight = movementController.getRawAxis(4) == 1 ? 1 : 0.4;
+    drive(-movementController.getRawAxis(1) * boostLeft, movementController.getRawAxis(5) * boostRight);
   }
 
 }
