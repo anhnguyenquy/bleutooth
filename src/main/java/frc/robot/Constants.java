@@ -29,7 +29,7 @@ public final class Constants {
     public final static class Speed {
         public static double defaultIntakerSpeed = 0.4;
         public static double defaultMoveSpeed = 0.4;
-        public static double safetyThreshold = 0.4; // Maximum manual speed cap
+        public static double safetyThreshold = .5; // Maximum manual speed cap
     }
     
     public final static class Time {
