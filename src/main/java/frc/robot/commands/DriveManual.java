@@ -23,7 +23,7 @@ public class DriveManual extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-    // drivebase.drive(0, 0); // Set speed 2 bên về 0 để dừng bot
+    drivebase.drive(0, 0); // Set speed 2 bên về 0 để dừng bot
   }
 
   @Override

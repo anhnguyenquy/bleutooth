@@ -23,12 +23,13 @@ public final class Constants {
         public static int movementController = 0; 
         public static int intakeController = 2; 
         public static double sensitivity = 1; // 0 -> 1
-        public static int deadzone = 0; // 0 -> 1
+        public static double deadzone = 0; // 0 -> 1, recommended around .1 -> .2
     }
 
     public final static class Speed {
         public static double defaultIntakerSpeed = 0.4;
         public static double defaultMoveSpeed = 0.4;
+        public static double safetyThreshold = 0.4; // Maximum manual speed cap
     }
     
     public final static class Time {
@@ -45,5 +46,4 @@ public final class Constants {
         public static final double kToleranceStraight = 0.1f;
         public static final double kStraightConstant = 0.08;
     }
-
 }
