@@ -23,13 +23,14 @@ public final class Constants {
         public static int movementController = 0; 
         public static int intakeController = 2; 
         public static double sensitivity = 1; // 0 -> 1
-        public static double deadzone = 0; // 0 -> 1, recommended around .1 -> .2
+        public static double deadzone = 0.01; // 0 -> 1, recommended around .01 -> .05
+        public static int driveSwapButton = 1; // Change between legacy and new driving system
     }
 
     public final static class Speed {
         public static double defaultIntakerSpeed = 0.4;
         public static double defaultMoveSpeed = 0.4;
-        public static double safetyThreshold = .5; // Maximum manual speed cap
+        public static double safetyThreshold = .375; // Maximum manual speed cap
     }
     
     public final static class Time {

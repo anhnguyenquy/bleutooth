@@ -2,7 +2,10 @@ package frc.robot.subsystems;
 
 import java.lang.Math;
 import edu.wpi.first.wpilibj.XboxController.Axis;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotContainer;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import static frc.robot.Constants.*;
@@ -18,8 +21,9 @@ public class Drivebase extends SubsystemBase {
   private double pivot = 0;
   private double leftMotorInput = 0;
   private double rightMotorInput = 0;
-
-  private boolean useLegacy = false;
+  // LEGACY
+  private double leftInput = 0;
+  private double rightInput = 0;
 
   public Drivebase() {
     rightMaster = new WPI_TalonSRX(Motors.rightMaster);
@@ -45,14 +49,12 @@ public class Drivebase extends SubsystemBase {
 
   @Override
   public void periodic() {
-    if (movementController.getAButton()) {
-      useLegacy = !useLegacy;
-    }
-
-    if (useLegacy) {
+    if (RobotContainer.useLegacy) {
       double boostLeft = movementController.getRawAxis(2) == 1 ? 1 : 0.4;
       double boostRight = movementController.getRawAxis(4) == 1 ? 1 : 0.4;
-      drive(-movementController.getRawAxis(1) * boostLeft, movementController.getRawAxis(5) * boostRight);
+      leftInput = -movementController.getRawAxis(1) * boostLeft;
+      rightInput = movementController.getRawAxis(5) * boostRight;
+      drive(leftInput, rightInput);
     }
 
     else {
@@ -73,10 +75,10 @@ public class Drivebase extends SubsystemBase {
         leftMotorInput = Math.min(Speed.safetyThreshold, leftMotorInput);
         rightMotorInput = Math.min(Speed.safetyThreshold, rightMotorInput);
 
-        // Experimental quick turning patch
-        if (leftMotorInput * rightMotorInput < 0) {
-          leftMotorInput = (leftMotorInput < 0) ? -rightMotorInput : leftMotorInput;
-          rightMotorInput = (rightMotorInput < 0) ? -leftMotorInput : rightMotorInput;
+        // Enable quick turning
+        if (leftMotorInput * rightMotorInput <= 0) {
+          leftMotorInput = (leftMotorInput <= 0) ? -rightMotorInput : leftMotorInput;
+          rightMotorInput = (rightMotorInput <= 0) ? -leftMotorInput : rightMotorInput;
         }
       }
 
@@ -88,16 +90,25 @@ public class Drivebase extends SubsystemBase {
         leftMotorInput = Math.max(-Speed.safetyThreshold, leftMotorInput);
         rightMotorInput = Math.max(-Speed.safetyThreshold, rightMotorInput);
 
-        // Experimental quick turning patch
-        if (leftMotorInput * rightMotorInput < 0) {
-          leftMotorInput = (leftMotorInput > 0) ? -rightMotorInput : leftMotorInput;
-          rightMotorInput = (rightMotorInput > 0)? -leftMotorInput : rightMotorInput;
+        // Enable quick turning
+        if (leftMotorInput * rightMotorInput <= 0) {
+          leftMotorInput = (leftMotorInput >= 0) ? -rightMotorInput : leftMotorInput;
+          rightMotorInput = (rightMotorInput >= 0)? -leftMotorInput : rightMotorInput;
         }
       }
+      
+      // For some reason lol
+      leftMotorInput = -leftMotorInput;
 
-      // Modeset the motors
+      // Modeset the motors and output to SmartDashboard
       // Has to be negated for some reason
-      drive(-leftMotorInput, -rightMotorInput);
+      drive(leftMotorInput, rightMotorInput);
     }
+
+    SmartDashboard.putBoolean("Legacy Mode ", RobotContainer.useLegacy);
+    SmartDashboard.putNumber("[Legacy] Left Motor Value ", leftInput);
+    SmartDashboard.putNumber("[Legacy] Right Motor Value ", rightInput);
+    SmartDashboard.putNumber("[New System] Left Motor Value ", leftMotorInput);
+    SmartDashboard.putNumber("[New System] Right Motor Value ", -rightMotorInput);
   }
 }

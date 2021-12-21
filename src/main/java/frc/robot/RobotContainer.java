@@ -3,6 +3,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
 import static frc.robot.Constants.*;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
@@ -12,9 +14,12 @@ public class RobotContainer {
   public static Drivebase drivebase = new Drivebase();
   public static XboxController movementController = new XboxController(Controllers.movementController);
 
+  public static boolean useLegacy = false;
+
   // public static Intakers intakers = new Intakers();
   // Command auto = new Auto(intakers, drive);
   Command driveManual = new DriveManual(drivebase);
+  Command toggleDriveSystem = new ToggleDriveSystem();
 
   public RobotContainer() {
     configureButtonBindings();
@@ -27,7 +32,7 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-
+    new JoystickButton(movementController, Controllers.driveSwapButton).whileActiveOnce(toggleDriveSystem);
   }
 
   /**
