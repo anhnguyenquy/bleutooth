@@ -1,7 +1,6 @@
 package frc.robot.subsystems;
 
 import java.lang.Math;
-import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
@@ -21,9 +20,10 @@ public class Drivebase extends SubsystemBase {
   private double pivot = 0;
   private double leftMotorInput = 0;
   private double rightMotorInput = 0;
-  // LEGACY
-  private double leftInput = 0;
-  private double rightInput = 0;
+
+  // Legacy
+  private double leftSpeed = 0;
+  private double rightSpeed = 0;
 
   public Drivebase() {
     rightMaster = new WPI_TalonSRX(Motors.rightMaster);
@@ -52,16 +52,18 @@ public class Drivebase extends SubsystemBase {
     if (RobotContainer.useLegacy) {
       double boostLeft = movementController.getRawAxis(2) == 1 ? 1 : 0.4;
       double boostRight = movementController.getRawAxis(4) == 1 ? 1 : 0.4;
-      leftInput = -movementController.getRawAxis(1) * boostLeft;
-      rightInput = movementController.getRawAxis(5) * boostRight;
-      drive(leftInput, rightInput);
+      leftSpeed = -movementController.getRawAxis(1) * boostLeft;
+      rightSpeed = movementController.getRawAxis(5) * boostRight;
+      drive(leftSpeed, rightSpeed);
+      SmartDashboard.putNumber("Left motor's speed", leftSpeed);
+      SmartDashboard.putNumber("Right motor's speed", rightSpeed);
     }
 
     else {
-      baseSpeed = movementController.getRawAxis(Axis.kLeftY.value);
+      baseSpeed = movementController.getRawAxis(1);
       baseSpeed = (Math.abs(baseSpeed) > Controllers.deadzone) ? baseSpeed : 0;
 
-      pivot = movementController.getRawAxis(Axis.kRightX.value);
+      pivot = movementController.getRawAxis(4);
       pivot = (Math.abs(pivot) > Controllers.deadzone) ? pivot : 0;
 
       leftMotorInput = baseSpeed;
@@ -93,22 +95,20 @@ public class Drivebase extends SubsystemBase {
         // Enable quick turning
         if (leftMotorInput * rightMotorInput <= 0) {
           leftMotorInput = (leftMotorInput >= 0) ? -rightMotorInput : leftMotorInput;
-          rightMotorInput = (rightMotorInput >= 0)? -leftMotorInput : rightMotorInput;
+          rightMotorInput = (rightMotorInput >= 0) ? -leftMotorInput : rightMotorInput;
         }
       }
-      
+
       // For some reason lol
       leftMotorInput = -leftMotorInput;
 
       // Modeset the motors and output to SmartDashboard
       // Has to be negated for some reason
       drive(leftMotorInput, rightMotorInput);
+      SmartDashboard.putNumber("Left motor's speed", leftMotorInput);
+      SmartDashboard.putNumber("Right motor's speed", rightMotorInput);
     }
 
-    SmartDashboard.putBoolean("Legacy Mode ", RobotContainer.useLegacy);
-    SmartDashboard.putNumber("[Legacy] Left Motor Value ", leftInput);
-    SmartDashboard.putNumber("[Legacy] Right Motor Value ", rightInput);
-    SmartDashboard.putNumber("[New System] Left Motor Value ", leftMotorInput);
-    SmartDashboard.putNumber("[New System] Right Motor Value ", -rightMotorInput);
+    SmartDashboard.putBoolean("Legacy Mode", RobotContainer.useLegacy);
   }
 }

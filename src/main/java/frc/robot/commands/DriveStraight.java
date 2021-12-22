@@ -20,12 +20,12 @@ public class DriveStraight extends CommandBase {
 
   @Override
   public void execute() {
-    drivebase.drive(v, v); // Speed 2 bên đều là v do đi thẳng
+    drivebase.drive(v, v);
   }
 
   @Override
   public void end(boolean interrupted) {
-    drivebase.drive(0, 0); // Set speed 2 bên về 0 để dừng bot
+    drivebase.drive(0, 0);
   }
 
   @Override
