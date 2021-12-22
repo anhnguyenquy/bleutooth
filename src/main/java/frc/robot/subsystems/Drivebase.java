@@ -2,14 +2,16 @@ package frc.robot.subsystems;
 
 import java.lang.Math;
 import edu.wpi.first.wpilibj.XboxController.Axis;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotContainer;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import static frc.robot.Constants.*;
 import static frc.robot.RobotContainer.*;
 
 public class Drivebase extends SubsystemBase {
-
   private WPI_TalonSRX rightMaster;
   private WPI_TalonSRX leftMaster;
   private WPI_TalonSRX rightFollow;
@@ -19,6 +21,9 @@ public class Drivebase extends SubsystemBase {
   private double pivot = 0;
   private double leftMotorInput = 0;
   private double rightMotorInput = 0;
+  // LEGACY
+  private double leftInput = 0;
+  private double rightInput = 0;
 
   public Drivebase() {
     rightMaster = new WPI_TalonSRX(Motors.rightMaster);
@@ -44,53 +49,66 @@ public class Drivebase extends SubsystemBase {
 
   @Override
   public void periodic() {
-    /* Legacy manual drive
-    double boostLeft = movementController.getRawAxis(2) == 1 ? 1 : 0.4;
-    double boostRight = movementController.getRawAxis(4) == 1 ? 1 : 0.4;
-    drive(-movementController.getRawAxis(1) * boostLeft, movementController.getRawAxis(5) * boostRight);
-    */
-
-    baseSpeed = movementController.getRawAxis(Axis.kLeftY.value);
-    baseSpeed = (Math.abs(baseSpeed) > Controllers.deadzone) ? baseSpeed : 0;
-
-    pivot = movementController.getRawAxis(Axis.kRightX.value);
-    pivot = (Math.abs(pivot) > Controllers.deadzone) ? pivot : 0;
-
-    leftMotorInput = baseSpeed;
-    rightMotorInput = baseSpeed;
-
-    if (baseSpeed > 0) {
-      leftMotorInput += pivot;
-      rightMotorInput -= pivot;
-
-      // Enforce safety speed cap
-      leftMotorInput = Math.min(Speed.safetyThreshold, leftMotorInput);
-      rightMotorInput = Math.min(Speed.safetyThreshold, rightMotorInput);
-
-      // Experimental quick turning patch
-      if (leftMotorInput * rightMotorInput < 0) {
-        leftMotorInput = (leftMotorInput < 0) ? -rightMotorInput : leftMotorInput;
-        rightMotorInput = (rightMotorInput < 0) ? -leftMotorInput : rightMotorInput;
-      }
+    if (RobotContainer.useLegacy) {
+      double boostLeft = movementController.getRawAxis(2) == 1 ? 1 : 0.4;
+      double boostRight = movementController.getRawAxis(4) == 1 ? 1 : 0.4;
+      leftInput = -movementController.getRawAxis(1) * boostLeft;
+      rightInput = movementController.getRawAxis(5) * boostRight;
+      drive(leftInput, rightInput);
     }
 
-    else if (baseSpeed < 0) {
-      leftMotorInput -= pivot;
-      rightMotorInput += pivot;
+    else {
+      baseSpeed = movementController.getRawAxis(Axis.kLeftY.value);
+      baseSpeed = (Math.abs(baseSpeed) > Controllers.deadzone) ? baseSpeed : 0;
 
-      // Enforce speed safety cap
-      leftMotorInput = Math.max(-Speed.safetyThreshold, leftMotorInput);
-      rightMotorInput = Math.max(-Speed.safetyThreshold, rightMotorInput);
+      pivot = movementController.getRawAxis(Axis.kRightX.value);
+      pivot = (Math.abs(pivot) > Controllers.deadzone) ? pivot : 0;
 
-      // Experimental quick turning patch
-      if (leftMotorInput * rightMotorInput < 0) {
-        leftMotorInput = (leftMotorInput > 0) ? -rightMotorInput : leftMotorInput;
-        rightMotorInput = (rightMotorInput > 0)? -leftMotorInput : rightMotorInput;
+      leftMotorInput = baseSpeed;
+      rightMotorInput = baseSpeed;
+
+      if (baseSpeed > 0) {
+        leftMotorInput += pivot;
+        rightMotorInput -= pivot;
+
+        // Enforce safety speed cap
+        leftMotorInput = Math.min(Speed.safetyThreshold, leftMotorInput);
+        rightMotorInput = Math.min(Speed.safetyThreshold, rightMotorInput);
+
+        // Enable quick turning
+        if (leftMotorInput * rightMotorInput <= 0) {
+          leftMotorInput = (leftMotorInput <= 0) ? -rightMotorInput : leftMotorInput;
+          rightMotorInput = (rightMotorInput <= 0) ? -leftMotorInput : rightMotorInput;
+        }
       }
+
+      else if (baseSpeed < 0) {
+        leftMotorInput -= pivot;
+        rightMotorInput += pivot;
+
+        // Enforce speed safety cap
+        leftMotorInput = Math.max(-Speed.safetyThreshold, leftMotorInput);
+        rightMotorInput = Math.max(-Speed.safetyThreshold, rightMotorInput);
+
+        // Enable quick turning
+        if (leftMotorInput * rightMotorInput <= 0) {
+          leftMotorInput = (leftMotorInput >= 0) ? -rightMotorInput : leftMotorInput;
+          rightMotorInput = (rightMotorInput >= 0)? -leftMotorInput : rightMotorInput;
+        }
+      }
+      
+      // For some reason lol
+      leftMotorInput = -leftMotorInput;
+
+      // Modeset the motors and output to SmartDashboard
+      // Has to be negated for some reason
+      drive(leftMotorInput, rightMotorInput);
     }
 
-    // Modeset the motors
-    // Has to be negated for some reason
-    drive(-leftMotorInput, -rightMotorInput);
+    SmartDashboard.putBoolean("Legacy Mode ", RobotContainer.useLegacy);
+    SmartDashboard.putNumber("[Legacy] Left Motor Value ", leftInput);
+    SmartDashboard.putNumber("[Legacy] Right Motor Value ", rightInput);
+    SmartDashboard.putNumber("[New System] Left Motor Value ", leftMotorInput);
+    SmartDashboard.putNumber("[New System] Right Motor Value ", -rightMotorInput);
   }
 }
