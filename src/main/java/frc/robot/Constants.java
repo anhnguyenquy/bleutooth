@@ -35,6 +35,7 @@ public final class Constants {
     
     public final static class Time {
         public static int timeToMove1MeterAtDefaultSpeed = 12345; // in milliseconds 
+        public static int timeToRotate90AtDefaultSpeed = 165; // in milliseconds
     }
 
     public static final class PID {

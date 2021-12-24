@@ -7,24 +7,24 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import static frc.robot.Constants.*;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
+import static frc.robot.CustomFunctions.*;
 
 public class RobotContainer {
 
+  public static boolean useLegacy = false;
   public static Drivebase drivebase = new Drivebase();
   public static XboxController movementController = new XboxController(Controllers.movementController);
 
-  public static boolean useLegacy = false;
-
-  // public static Intakers intakers = new Intakers();
-  // Command auto = new Auto(intakers, drive);
   Command driveManual = new DriveManual(drivebase);
   Command toggleDriveSystem = new ToggleDriveSystem();
+  Command moveAuto = new MoveAuto(drivebase);
+  Command rotate90 = new Rotate90();
 
   public RobotContainer() {
     configureButtonBindings();
   }
 
-   /**
+  /**
    * Use this method to define your button->command mappings. Buttons can be
    * created by instantiating a {@link GenericHID} or one of its subclasses
    * ({@link edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then
@@ -40,7 +40,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return driveManual;
+    return rotate90;
   }
 
 }
