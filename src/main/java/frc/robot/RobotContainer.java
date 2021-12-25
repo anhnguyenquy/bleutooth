@@ -42,5 +42,8 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     return rotate90;
   }
+  public Command getTeleCommand() {
+    return driveManual;
+  }
 
 }

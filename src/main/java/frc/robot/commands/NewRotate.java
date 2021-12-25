@@ -22,10 +22,10 @@ public class NewRotate extends CommandBase {
   @Override
   public void execute() {
     if (direction == "right") {
-      drivebase.drive(0, 0.4);
+      drivebase.drive(0, 1);
     }
     if (direction == "left") {
-      drivebase.drive(0.4, 0);
+      drivebase.drive(1, 0);
     }
   }
 

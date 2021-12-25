@@ -10,7 +10,6 @@ public class MoveAuto extends SequentialCommandGroup {
 
   public MoveAuto(Drivebase drivebase) {
     addCommands(
-      //aslk;da;sldka;lsdk
       // new Rotate(drivebase, -50),
       // new Forward(drivebase, 8.66), // red arrow
       // new Rotate(drivebase, 50),

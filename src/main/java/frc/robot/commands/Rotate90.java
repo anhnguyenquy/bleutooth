@@ -9,9 +9,6 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import static frc.robot.RobotContainer.*;
 import frc.robot.commands.Stop;
 
-// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
-// information, see:
-// https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class Rotate90 extends SequentialCommandGroup {
   public Rotate90() {
     addCommands(

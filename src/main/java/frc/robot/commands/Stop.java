@@ -9,6 +9,7 @@ public class Stop extends CommandBase {
 
   public Stop(Drivebase drivebase) {
     this.drivebase = drivebase;
+    addRequirements(this.drivebase);
   }
 
   @Override
