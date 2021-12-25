@@ -25,6 +25,7 @@ public final class Constants {
         public static double sensitivity = 1; // 0 -> 1
         public static double deadzone = 0.01; // 0 -> 1, recommended around .01 -> .05
         public static int driveSwapButton = 1; // Change between legacy and new driving system
+        public static int turnBackButton = 2; // Turn the robot 180 degrees clockwise
     }
 
     public final static class Speed {
@@ -35,7 +36,7 @@ public final class Constants {
     
     public final static class Time {
         public static int timeToMove1MeterAtDefaultSpeed = 12345; // in milliseconds 
-        public static int timeToRotate90AtDefaultSpeed = 165; // in milliseconds
+        public static double clockwise90 = 1033.33; // ms
     }
 
     public static final class PID {

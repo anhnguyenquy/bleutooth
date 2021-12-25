@@ -10,22 +10,22 @@ public class MoveAuto extends SequentialCommandGroup {
 
   public MoveAuto(Drivebase drivebase) {
     addCommands(
-      // new Rotate(drivebase, -50),
-      // new Forward(drivebase, 8.66), // red arrow
-      // new Rotate(drivebase, 50),
-      // new Forward(drivebase, 1.66), // light blue arrow
-      // // nhấc hộp()
-      // new Forward(drivebase, -0.66), // lùi lại sau khi nhấc đc thùng xanh
-      // new Rotate(drivebase, -50),
-      // new Forward(drivebase, 4.66), // dark blue arrow (lên storage area)
-      // // drop hộp()
-      // new Rotate(drivebase, -180),
-      // new Forward(drivebase, 7.33), // yellow arrow 1
-      // new Rotate(drivebase, -40),
-      // new Forward(drivebase, 3.33), // yellow arrow 2
-      // // nhấc hộp();
-      // new Rotate(drivebase, 70),
-      // new Forward(drivebase, 7.33) // yellow arrow 3
+      new Rotate(drivebase, -50),
+      new Forward(drivebase, 8.66), // red arrow
+      new Rotate(drivebase, 50),
+      new Forward(drivebase, 1.66), // light blue arrow
+      // nhấc hộp()
+      new Forward(drivebase, -0.66), // lùi lại sau khi nhấc đc thùng xanh
+      new Rotate(drivebase, -50),
+      new Forward(drivebase, 4.66), // dark blue arrow (lên storage area)
+      // drop hộp()
+      new Rotate(drivebase, -180),
+      new Forward(drivebase, 7.33), // yellow arrow 1
+      new Rotate(drivebase, -40),
+      new Forward(drivebase, 3.33), // yellow arrow 2
+      // nhấc hộp();
+      new Rotate(drivebase, 70),
+      new Forward(drivebase, 7.33) // yellow arrow 3
     );
   }
 
