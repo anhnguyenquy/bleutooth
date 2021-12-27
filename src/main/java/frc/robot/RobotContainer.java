@@ -13,12 +13,19 @@ public class RobotContainer {
 
   public static boolean useLegacy = false;
   public static Drivebase drivebase = new Drivebase();
+  public static Spinner spinner = new Spinner();
+  public static Slider slider = new Slider();
   public static XboxController movementController = new XboxController(Controllers.movementController);
 
   Command driveManual = new DriveManual(drivebase);
   Command toggleDriveSystem = new ToggleDriveSystem();
   Command moveAuto = new MoveAuto(drivebase);
   Command rotate90 = new Rotate90();
+  Command startSpinner = new MoveSpinner(spinner, "start");
+  Command startSlider = new MoveSlider(slider, "start");
+  Command stopSpinner = new MoveSpinner(spinner, "stop");
+  Command stopSlider = new MoveSlider(slider, "stop");
+
 
   public RobotContainer() {
     configureButtonBindings();
@@ -32,6 +39,11 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     new JoystickButton(movementController, Controllers.driveSwapButton).whileActiveOnce(toggleDriveSystem);
+    new JoystickButton(movementController, 3).whileActiveOnce(startSpinner);
+    new JoystickButton(movementController, 2).whileActiveOnce(stopSpinner);
+    new JoystickButton(movementController, 5).whileActiveOnce(startSlider);
+    new JoystickButton(movementController, 6).whileActiveOnce(stopSlider);
+
   }
 
   /**

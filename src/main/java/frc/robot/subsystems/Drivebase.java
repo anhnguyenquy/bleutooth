@@ -49,66 +49,6 @@ public class Drivebase extends SubsystemBase {
 
   @Override
   public void periodic() {
-    if (RobotContainer.useLegacy) {
-      double boostLeft = movementController.getRawAxis(2) == 1 ? 1 : 0.4;
-      double boostRight = movementController.getRawAxis(4) == 1 ? 1 : 0.4;
-      leftSpeed = -movementController.getRawAxis(1) * boostLeft;
-      rightSpeed = movementController.getRawAxis(5) * boostRight;
-      drive(leftSpeed, rightSpeed);
-      SmartDashboard.putNumber("Left motor's speed", leftSpeed);
-      SmartDashboard.putNumber("Right motor's speed", rightSpeed);
-    }
-
-    else {
-      baseSpeed = movementController.getRawAxis(1);
-      baseSpeed = (Math.abs(baseSpeed) > Controllers.deadzone) ? baseSpeed : 0;
-
-      pivot = movementController.getRawAxis(4);
-      pivot = (Math.abs(pivot) > Controllers.deadzone) ? pivot : 0;
-
-      leftMotorInput = baseSpeed;
-      rightMotorInput = baseSpeed;
-
-      if (baseSpeed > 0) {
-        leftMotorInput += pivot;
-        rightMotorInput -= pivot;
-
-        // Enforce safety speed cap
-        leftMotorInput = Math.min(Speed.safetyThreshold, leftMotorInput);
-        rightMotorInput = Math.min(Speed.safetyThreshold, rightMotorInput);
-
-        // Enable quick turning
-        if (leftMotorInput * rightMotorInput <= 0) {
-          leftMotorInput = (leftMotorInput <= 0) ? -rightMotorInput : leftMotorInput;
-          rightMotorInput = (rightMotorInput <= 0) ? -leftMotorInput : rightMotorInput;
-        }
-      }
-
-      else if (baseSpeed < 0) {
-        leftMotorInput -= pivot;
-        rightMotorInput += pivot;
-
-        // Enforce speed safety cap
-        leftMotorInput = Math.max(-Speed.safetyThreshold, leftMotorInput);
-        rightMotorInput = Math.max(-Speed.safetyThreshold, rightMotorInput);
-
-        // Enable quick turning
-        if (leftMotorInput * rightMotorInput <= 0) {
-          leftMotorInput = (leftMotorInput >= 0) ? -rightMotorInput : leftMotorInput;
-          rightMotorInput = (rightMotorInput >= 0) ? -leftMotorInput : rightMotorInput;
-        }
-      }
-
-      // For some reason lol
-      leftMotorInput = -leftMotorInput;
-
-      // Modeset the motors and output to SmartDashboard
-      // Has to be negated for some reason
-      drive(leftMotorInput, rightMotorInput);
-      SmartDashboard.putNumber("Left motor's speed", leftMotorInput);
-      SmartDashboard.putNumber("Right motor's speed", rightMotorInput);
-    }
-
-    SmartDashboard.putBoolean("Legacy Mode", RobotContainer.useLegacy);
+    
   }
 }

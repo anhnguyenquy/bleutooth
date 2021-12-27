@@ -14,9 +14,9 @@ public final class Constants {
         public static int rightFollow = 3; 
         public static int leftFollow = 4;
 
-        public static int intaker1 = 7;
-        public static int intaker2 = 8;
-        public static int intaker3 = 9;
+        public static int grabber = 5;
+        public static int spinner = 7;
+        public static int slider = 6;
     }
 
     public final static class Controllers {
