@@ -19,6 +19,15 @@ public final class Constants {
         public static int slider = 6;
     }
 
+    public final static class DIO {
+        public static int upper = 1;
+        public static int lower = 0;
+    }
+
+    public final static class Relays { // 0->3
+        public static int latch = 1;
+    }
+
     public final static class Controllers {
         public static int movementController = 0; 
         public static int intakeController = 2; 
@@ -31,6 +40,7 @@ public final class Constants {
         public static double defaultIntakerSpeed = 0.4;
         public static double defaultMoveSpeed = 0.4;
         public static double safetyThreshold = .375; // Maximum manual speed cap
+        public static double grabberSpeed = 0.1;
     }
     
     public final static class Time {

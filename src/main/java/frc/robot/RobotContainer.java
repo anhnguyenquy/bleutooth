@@ -4,10 +4,13 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
+
 import static frc.robot.Constants.*;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import static frc.robot.CustomFunctions.*;
+
 
 public class RobotContainer {
 
@@ -15,7 +18,11 @@ public class RobotContainer {
   public static Drivebase drivebase = new Drivebase();
   public static Spinner spinner = new Spinner();
   public static Slider slider = new Slider();
+  public static Latch latch = new Latch();
+  public static Grabber grabber = new Grabber();
   public static XboxController movementController = new XboxController(Controllers.movementController);
+  public static LimitSwitches limitSwitches = new LimitSwitches();
+
 
   Command driveManual = new DriveManual(drivebase);
   Command toggleDriveSystem = new ToggleDriveSystem();
@@ -25,7 +32,10 @@ public class RobotContainer {
   Command startSlider = new MoveSlider(slider, "start");
   Command stopSpinner = new MoveSpinner(spinner, "stop");
   Command stopSlider = new MoveSlider(slider, "stop");
-
+  Command extendLatch = new MoveLatch(latch, MoveLatch.Command.EXTEND);
+  Command retractLatch = new MoveLatch(latch, MoveLatch.Command.RETRACT);
+  Command grabberUp = new Grab(grabber, Grab.Command.UP);
+  Command grabberDown = new Grab(grabber, Grab.Command.DOWN);
 
   public RobotContainer() {
     configureButtonBindings();
@@ -43,7 +53,10 @@ public class RobotContainer {
     new JoystickButton(movementController, 2).whileActiveOnce(stopSpinner);
     new JoystickButton(movementController, 5).whileActiveOnce(startSlider);
     new JoystickButton(movementController, 6).whileActiveOnce(stopSlider);
-
+    new JoystickButton(movementController, 7).whileActiveOnce(extendLatch);
+    new JoystickButton(movementController, 8).whileActiveOnce(retractLatch);
+    new POVButton(movementController, 90).whileActiveOnce(grabberUp);
+    new POVButton(movementController, 270).whileActiveOnce(grabberDown);
   }
 
   /**
