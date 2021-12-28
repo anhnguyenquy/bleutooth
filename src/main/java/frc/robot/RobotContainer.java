@@ -34,6 +34,7 @@ public class RobotContainer {
   Command retractLatch = new MoveLatch(latch, MoveLatch.Command.RETRACT);
   Command grabberUp = new Grab(grabber, Grab.Command.UP);
   Command grabberDown = new Grab(grabber, Grab.Command.DOWN);
+  Command readDIO = new ReadDIO(limitSwitches);
 
   public RobotContainer() {
     configureButtonBindings();
@@ -47,12 +48,12 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     new JoystickButton(movementController, Controllers.driveSwapButton).whileActiveOnce(toggleDriveSystem);
-    new JoystickButton(movementController, 5).whileActiveOnce(moveSpinner); //
-    new JoystickButton(movementController, 6).whileActiveOnce(moveSlider); ///
+    new JoystickButton(movementController, 5).whileActiveOnce(moveSlider); //
+    new JoystickButton(movementController, 6).whileActiveOnce(moveSpinner); ///
     new JoystickButton(movementController, 7).whileActiveOnce(extendLatch);
     new JoystickButton(movementController, 8).whileActiveOnce(retractLatch);
-    new JoystickButton(movementController, 2).whileActiveOnce(grabberUp);
-    new JoystickButton(movementController, 3).whileActiveOnce(grabberDown);
+    new JoystickButton(movementController, 2).whileActiveOnce(grabberDown); //B
+    new JoystickButton(movementController, 3).whileActiveOnce(grabberUp); //X
   }
 
   /**
@@ -61,7 +62,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return rotate90;
+    return readDIO;
   }
  
 }

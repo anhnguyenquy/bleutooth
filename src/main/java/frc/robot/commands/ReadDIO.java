@@ -7,19 +7,13 @@ import static frc.robot.RobotContainer.*;
 import static frc.robot.Constants.*;
 
 
-public class Grab extends CommandBase {
+public class ReadDIO extends CommandBase {
 
-	public enum Command {
-		UP,
-		DOWN
-	}
+  private LimitSwitches limitSwitches;
 
-  private Grabber grabber;
-
-
-  public Grab(Grabber grabber, Command command) {
-    this.grabber = grabber;
-    addRequirements(this.grabber);
+  public ReadDIO(LimitSwitches limitSwitches) {
+		this.limitSwitches = limitSwitches;
+    addRequirements(this.limitSwitches);
   }
 
   @Override
@@ -28,12 +22,11 @@ public class Grab extends CommandBase {
 
   @Override
   public void execute() {
-   grabber.start(0.2);	
   }
 
   @Override
   public void end(boolean interrupted) {
-    grabber.stop();
+
   }
 
   @Override

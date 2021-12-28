@@ -20,8 +20,8 @@ public final class Constants {
     }
 
     public final static class DIO {
-        public static int upper = 1;
-        public static int lower = 0;
+        public static int upper = 0;
+        public static int lower = 1;
     }
 
     public final static class Relays { // 0->3

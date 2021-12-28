@@ -5,7 +5,7 @@ import frc.robot.subsystems.Spinner;
 
 public class MoveSpinner extends CommandBase {
 
-  private Spinner spinner;
+  private final Spinner spinner;
 
   public MoveSpinner(Spinner spinner) {
     this.spinner = spinner;
@@ -14,7 +14,7 @@ public class MoveSpinner extends CommandBase {
 
   @Override
   public void initialize() {
-    spinner.start(1);
+    spinner.start(-0.5);
   }
 
   @Override
@@ -29,7 +29,7 @@ public class MoveSpinner extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
   
 }

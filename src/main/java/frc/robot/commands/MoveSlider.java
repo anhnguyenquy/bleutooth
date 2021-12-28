@@ -14,7 +14,7 @@ public class MoveSlider extends CommandBase {
 
   @Override
   public void initialize() {
-    slider.start(1);
+    slider.start(-1);
   }
 
   @Override
@@ -29,7 +29,7 @@ public class MoveSlider extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
   
 }
