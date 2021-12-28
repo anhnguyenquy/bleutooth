@@ -11,9 +11,9 @@ public class Latch extends SubsystemBase {
 
 	private Relay latch;
 
-  public Latch() {
+	public Latch() {
 		latch = new Relay(Relays.latch, Direction.kForward);
-  }
+	}
 
 	public void extend() {
 		latch.set(Value.kOn);
@@ -23,6 +23,7 @@ public class Latch extends SubsystemBase {
 		latch.set(Value.kOff);
 	}
 
-  @Override
-  public void periodic() {}
+	@Override
+	public void periodic() {
+	}
 }

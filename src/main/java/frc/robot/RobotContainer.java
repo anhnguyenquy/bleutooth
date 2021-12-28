@@ -28,10 +28,8 @@ public class RobotContainer {
   Command toggleDriveSystem = new ToggleDriveSystem();
   Command moveAuto = new MoveAuto(drivebase);
   Command rotate90 = new Rotate90();
-  Command startSpinner = new MoveSpinner(spinner, "start");
-  Command startSlider = new MoveSlider(slider, "start");
-  Command stopSpinner = new MoveSpinner(spinner, "stop");
-  Command stopSlider = new MoveSlider(slider, "stop");
+  Command moveSpinner = new MoveSpinner(spinner);
+  Command moveSlider = new MoveSlider(slider);
   Command extendLatch = new MoveLatch(latch, MoveLatch.Command.EXTEND);
   Command retractLatch = new MoveLatch(latch, MoveLatch.Command.RETRACT);
   Command grabberUp = new Grab(grabber, Grab.Command.UP);
@@ -49,14 +47,12 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     new JoystickButton(movementController, Controllers.driveSwapButton).whileActiveOnce(toggleDriveSystem);
-    new JoystickButton(movementController, 3).whileActiveOnce(startSpinner);
-    new JoystickButton(movementController, 2).whileActiveOnce(stopSpinner);
-    new JoystickButton(movementController, 5).whileActiveOnce(startSlider);
-    new JoystickButton(movementController, 6).whileActiveOnce(stopSlider);
+    new JoystickButton(movementController, 5).whileActiveOnce(moveSpinner); //
+    new JoystickButton(movementController, 6).whileActiveOnce(moveSlider); ///
     new JoystickButton(movementController, 7).whileActiveOnce(extendLatch);
     new JoystickButton(movementController, 8).whileActiveOnce(retractLatch);
-    new POVButton(movementController, 90).whileActiveOnce(grabberUp);
-    new POVButton(movementController, 270).whileActiveOnce(grabberDown);
+    new JoystickButton(movementController, 2).whileActiveOnce(grabberUp);
+    new JoystickButton(movementController, 3).whileActiveOnce(grabberDown);
   }
 
   /**
@@ -67,8 +63,5 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     return rotate90;
   }
-  public Command getTeleCommand() {
-    return driveManual;
-  }
-
+ 
 }

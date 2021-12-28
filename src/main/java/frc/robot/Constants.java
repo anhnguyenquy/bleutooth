@@ -15,8 +15,8 @@ public final class Constants {
         public static int leftFollow = 4;
 
         public static int grabber = 5;
-        public static int spinner = 7;
-        public static int slider = 6;
+        public static int spinner = 6;
+        public static int slider = 7;
     }
 
     public final static class DIO {

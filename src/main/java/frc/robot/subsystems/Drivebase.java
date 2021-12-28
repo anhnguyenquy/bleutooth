@@ -49,6 +49,12 @@ public class Drivebase extends SubsystemBase {
 
   @Override
   public void periodic() {
-    
+    double boostLeft = movementController.getRawAxis(2) == 1 ? 1 : 0.4;
+    double boostRight = movementController.getRawAxis(4) == 1 ? 1 : 0.4;
+    leftSpeed = -movementController.getRawAxis(1) * boostLeft;
+    rightSpeed = movementController.getRawAxis(5) * boostRight;
+    drivebase.drive(leftSpeed, rightSpeed);
+    SmartDashboard.putNumber("Left motor's speed", leftSpeed);
+    SmartDashboard.putNumber("Right motor's speed", rightSpeed);
   }
 }

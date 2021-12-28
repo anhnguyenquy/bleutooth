@@ -6,31 +6,25 @@ import frc.robot.subsystems.Spinner;
 public class MoveSpinner extends CommandBase {
 
   private Spinner spinner;
-  private String command;
 
-  public MoveSpinner(Spinner spinner, String command) {
+  public MoveSpinner(Spinner spinner) {
     this.spinner = spinner;
-    this.command = command;
     addRequirements(this.spinner);
   }
 
   @Override
   public void initialize() {
+    spinner.start(1);
   }
 
   @Override
   public void execute() {
-    if (command == "start") {
-        spinner.start(1);
-    }
-    if (command == "stop") {
-        spinner.stop();
-    }
+    
   }
 
   @Override
   public void end(boolean interrupted) {
-
+    spinner.stop();
   }
 
   @Override
