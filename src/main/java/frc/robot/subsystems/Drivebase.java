@@ -1,9 +1,6 @@
 package frc.robot.subsystems;
 
-import java.lang.Math;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.RobotContainer;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -16,8 +13,8 @@ public class Drivebase extends SubsystemBase {
   private WPI_TalonSRX rightFollow;
   private WPI_TalonSRX leftFollow;
 
-  private double leftSpeed = 0;
-  private double rightSpeed = 0;
+  private double leftSpeed;
+  private double rightSpeed;
 
   public Drivebase() {
     rightMaster = new WPI_TalonSRX(Motors.rightMaster);
@@ -45,8 +42,8 @@ public class Drivebase extends SubsystemBase {
   public void periodic() {
     double boostLeft = movementController.getRawAxis(2) == 1 ? 1 : 0.4;
     double boostRight = movementController.getRawAxis(4) == 1 ? 1 : 0.4;
-    leftSpeed = -movementController.getRawAxis(1) * boostLeft;
+    leftSpeed = movementController.getRawAxis(1) * boostLeft;
     rightSpeed = movementController.getRawAxis(5) * boostRight;
-    drivebase.drive(leftSpeed, rightSpeed);
+    drive(leftSpeed, rightSpeed);
   }
 }

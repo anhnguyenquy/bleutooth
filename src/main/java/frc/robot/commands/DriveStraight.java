@@ -20,12 +20,12 @@ public class DriveStraight extends CommandBase {
 
   @Override
   public void execute() {
-    drivebase.drive(v, -v);
+    drivebase.drive(v, v);
   }
 
   @Override
   public void end(boolean interrupted) {
-    // drivebase.drive(0, 0);
+    drivebase.drive(0, 0);
   }
 
   @Override

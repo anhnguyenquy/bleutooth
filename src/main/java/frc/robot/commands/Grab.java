@@ -1,6 +1,5 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.*;
 import static frc.robot.RobotContainer.*;
@@ -23,23 +22,22 @@ public class Grab extends CommandBase {
 
   @Override
   public void initialize() {
+    latch.retract();
   }
 
   @Override
   public void execute() {
     switch (command) {
       case UP:
-        // if (!limitSwitches.reachedUpperLimit()) {
-        //   latch.retract();
-        //   grabber.start(Speed.grabberSpeed);
-        // }
-        grabber.start(Speed.grabberSpeed);
+        if (!limitSwitches.reachedUpperLimit()) {
+          latch.retract();
+          grabber.start(Speed.grabberSpeed);
+        }
         break;
       case DOWN:
-        // if (!limitSwitches.reachedLowerLimit()) {
-        //   grabber.start(-Speed.grabberSpeed);
-        // }
-        grabber.start(-Speed.grabberSpeed);
+        if (!limitSwitches.reachedLowerLimit()) {
+          grabber.start(-Speed.grabberSpeed);
+        }
         break;
       default:
         // can't reach this

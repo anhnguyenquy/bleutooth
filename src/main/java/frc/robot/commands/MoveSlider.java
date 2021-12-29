@@ -14,12 +14,12 @@ public class MoveSlider extends CommandBase {
 
   @Override
   public void initialize() {
-    slider.start(1);
+    
   }
 
   @Override
   public void execute() {
-    
+    slider.start(1);
   }
 
   @Override

@@ -19,9 +19,7 @@ public class RobotContainer {
   public static LimitSwitches limitSwitches = new LimitSwitches();
   
 
-  Command driveManual = new DriveManual(drivebase);
   Command driveStraight = new DriveStraight(drivebase, 1);
-  Command toggleDriveSystem = new ToggleDriveSystem();
   Command moveAuto = new MoveAuto(drivebase);
   Command rotate90 = new Rotate90();
   Command moveSpinner = new MoveSpinner(spinner);
@@ -31,7 +29,6 @@ public class RobotContainer {
   Command grabberUp = new Grab(grabber, Grab.Command.UP);
   Command grabberDown = new Grab(grabber, Grab.Command.DOWN);
   Command readDIO = new ReadDIO(limitSwitches);
-  Command Auto = new Auto(drivebase);
 
   public RobotContainer() {
     configureButtonBindings();
@@ -44,11 +41,10 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(movementController, Controllers.driveSwapButton).whileActiveOnce(toggleDriveSystem);
-    new JoystickButton(movementController, 5).whileActiveOnce(moveSlider); //
-    new JoystickButton(movementController, 6).whileActiveOnce(moveSpinner); ///
-    new JoystickButton(movementController, 7).whenPressed(extendLatch);
-    new JoystickButton(movementController, 8).whenPressed(retractLatch);
+    new JoystickButton(movementController, 5).whileActiveOnce(moveSlider);
+    new JoystickButton(movementController, 6).whileActiveOnce(moveSpinner); 
+    new JoystickButton(movementController, 7).whenPressed(extendLatch); // left-đóng
+    new JoystickButton(movementController, 8).whenPressed(retractLatch); // right-mở
     new JoystickButton(movementController, 3).whileActiveOnce(grabberDown); //B
     new JoystickButton(movementController, 2).whileActiveOnce(grabberUp); //X
   }

@@ -1,8 +1,5 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.Relay.Direction;
-import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -10,7 +7,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.*;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import static frc.robot.RobotContainer.*;
 
 public class Latch extends SubsystemBase {
 
@@ -33,6 +29,7 @@ public class Latch extends SubsystemBase {
 
 	@Override
 	public void periodic() {
-		SmartDashboard.putNumber("latch", speed);
+		String currentState = speed == 0? "closed": "opened";
+		SmartDashboard.putString("latch", currentState);
 	}
 }

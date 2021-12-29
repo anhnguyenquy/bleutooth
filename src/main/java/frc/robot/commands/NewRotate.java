@@ -6,10 +6,14 @@ import static frc.robot.CustomFunctions.*;
 
 public class NewRotate extends CommandBase {
 
+  public enum Direction {
+    RIGHT,
+    LEFT
+  }
   private final Drivebase drivebase;
-  private final String direction;
+  private final Direction direction;
 
-  public NewRotate(Drivebase drivebase, String direction) {
+  public NewRotate(Drivebase drivebase, Direction direction) {
     this.drivebase = drivebase;
     this.direction = direction;
     addRequirements(this.drivebase);
@@ -21,11 +25,15 @@ public class NewRotate extends CommandBase {
 
   @Override
   public void execute() {
-    if (direction == "right") {
-      drivebase.drive(0, 1);
-    }
-    if (direction == "left") {
-      drivebase.drive(1, 0);
+    switch (direction) {
+      case RIGHT:
+        drivebase.drive(0, 1);
+        break;
+      case LEFT:
+        drivebase.drive(1, 0);
+        break;
+      default:
+       // can't reach this
     }
   }
 
@@ -34,6 +42,6 @@ public class NewRotate extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }

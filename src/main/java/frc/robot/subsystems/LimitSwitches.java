@@ -27,12 +27,12 @@ public class LimitSwitches extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // if (!limitSwitches.reachedUpperLimit()) {
-    //   grabber.stop();
-    // }
-    // if (!limitSwitches.reachedLowerLimit()) {
-    //   grabber.stop();
-    //   latch.extend();
-    // }
+    if (!limitSwitches.reachedUpperLimit()) {
+      grabber.stop();
+    }
+    if (!limitSwitches.reachedLowerLimit()) {
+      grabber.stop();
+      latch.extend();
+    }
   }
 }

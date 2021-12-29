@@ -14,12 +14,12 @@ public class MoveSpinner extends CommandBase {
 
   @Override
   public void initialize() {
-    spinner.start(-0.5);
+    
   }
 
   @Override
   public void execute() {
-    
+    spinner.start(-0.5);
   }
 
   @Override

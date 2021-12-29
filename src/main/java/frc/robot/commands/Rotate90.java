@@ -8,11 +8,12 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import static frc.robot.RobotContainer.*;
 import frc.robot.commands.Stop;
+import frc.robot.commands.NewRotate.Direction;
 
 public class Rotate90 extends SequentialCommandGroup {
   public Rotate90() {
     addCommands(
-      new NewRotate(drivebase, "right"),
+      new NewRotate(drivebase, Direction.RIGHT),
       new WaitCommand(1.5),
       new Stop(drivebase)
     );

@@ -10,8 +10,8 @@ public final class Constants {
     public final static class Motors { 
         // Mấy cái này cũng sẽ phải đặt lại theo ID mỗi cái Talon trên Driver Station
         public static int rightMaster = 1;
-        public static int leftMaster = 2; 
-        public static int rightFollow = 3; 
+        public static int leftMaster = 3; 
+        public static int rightFollow = 2; 
         public static int leftFollow = 4;
 
         public static int grabber = 5;
