@@ -20,6 +20,7 @@ public class RobotContainer {
   
 
   Command driveManual = new DriveManual(drivebase);
+  Command driveStraight = new DriveStraight(drivebase, 1);
   Command toggleDriveSystem = new ToggleDriveSystem();
   Command moveAuto = new MoveAuto(drivebase);
   Command rotate90 = new Rotate90();
@@ -58,7 +59,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return Auto;
+    return driveStraight;
   }
  
 }

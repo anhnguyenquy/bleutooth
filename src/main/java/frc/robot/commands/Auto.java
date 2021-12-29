@@ -12,9 +12,9 @@ public class Auto extends SequentialCommandGroup {
 
   public Auto(Drivebase drivebase) {
     addCommands(
-        new DriveStraight(drivebase, 1),
-        new WaitCommand(5),
-        new Stop(drivebase)
+        new DriveStraight(drivebase, 1)
+//         new WaitCommand(5),
+        // new Stop(drivebase)
     );
   }
 

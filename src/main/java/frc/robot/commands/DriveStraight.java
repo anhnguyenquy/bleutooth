@@ -20,7 +20,7 @@ public class DriveStraight extends CommandBase {
 
   @Override
   public void execute() {
-    drivebase.drive(v, v);
+    drivebase.drive(v, -v);
   }
 
   @Override
@@ -30,7 +30,7 @@ public class DriveStraight extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
   
 }
