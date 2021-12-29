@@ -16,12 +16,6 @@ public class Drivebase extends SubsystemBase {
   private WPI_TalonSRX rightFollow;
   private WPI_TalonSRX leftFollow;
 
-  private double baseSpeed = 0;
-  private double pivot = 0;
-  private double leftMotorInput = 0;
-  private double rightMotorInput = 0;
-
-  // Legacy
   private double leftSpeed = 0;
   private double rightSpeed = 0;
 
@@ -54,7 +48,5 @@ public class Drivebase extends SubsystemBase {
     leftSpeed = -movementController.getRawAxis(1) * boostLeft;
     rightSpeed = movementController.getRawAxis(5) * boostRight;
     drivebase.drive(leftSpeed, rightSpeed);
-    SmartDashboard.putNumber("Left motor's speed", leftSpeed);
-    SmartDashboard.putNumber("Right motor's speed", rightSpeed);
   }
 }

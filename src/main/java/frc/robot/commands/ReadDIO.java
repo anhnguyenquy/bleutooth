@@ -22,6 +22,8 @@ public class ReadDIO extends CommandBase {
 
   @Override
   public void execute() {
+		SmartDashboard.putBoolean("Reached Upper Limit", limitSwitches.reachedUpperLimit());
+		SmartDashboard.putBoolean("Reached Lower Limit", limitSwitches.reachedLowerLimit());
   }
 
   @Override

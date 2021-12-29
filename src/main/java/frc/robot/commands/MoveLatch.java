@@ -44,7 +44,7 @@ public class MoveLatch extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
   
 }
